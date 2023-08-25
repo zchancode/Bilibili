@@ -24,16 +24,18 @@ Registry: external.system.auto.import.disabled=true, debugger.watches.in.variabl
 
 打开AndroidStudio创建NDK项目，C++ 工具链我选的C11版本
 
-![image-20230825154450049](README.assets/image-20230825154450049.png)
+<img src="README.assets/image-20230825154450049.png" alt="image-20230825154450049" style="zoom: 25%;" />
 
 #### 配置Git
 
 打开github这个连接，添加一个新的token，用于androidstudio，git还要配置ssh，配置用户名密码，邮箱，具体可以参考其他教程
 
-![image-20230825155011420](README.assets/image-20230825155011420.png)
+<img src="README.assets/image-20230825155011420.png" alt="image-20230825155011420" style="zoom:25%;" />
 
 #### 新建View库
 
-这个库主要是用来自定义控件或者布局的，写在一起的话很乱![image-20230825155325111](README.assets/image-20230825155325111.png)![image-20230825155400921](README.assets/image-20230825155400921.png)
+这个库主要是用来自定义控件或者布局的，写在一起的话很乱
+
+<img src="README.assets/image-20230825155400921.png" alt="image-20230825155400921" style="zoom:25%;" />
 
 很容易，我不做多解释，至此我们所有环境都配置好了，只要写代码实现功能了，照着bilibili的ui写就是了
