@@ -1,8 +1,12 @@
 #### 项目介绍
 
-  项目名称：VideoPlayer
+项目名称：Bilibili
 
-  一个模仿bilibili的安卓视频播放器、每一步做了什么我都会写在这里，每一个功能是怎么实现的我也会记录下来，这份文档我会发布中文和英文版本到Github:https://github.com/zchancode上面和我的博客上面[https://zchancode.github.io](https://zchancode.github.io)项目里面会用到许多技术如NDK Cmake 自定义View ffmpeg等等，写这个项目的目的是为了找到工作
+一个模仿bilibili的安卓视频播放器、每一步做了什么我都会写在这里，每一个功能是怎么实现的我也会记录下来，这份文档我会发布中文和英文版本到
+https://github.com/zchancode
+博客上面
+https://zchancode.github.io
+项目里面会用到许多技术如NDK Cmake 自定义View ffmpeg等等，写这个项目的目的是为了找到工作
 
 #### 项目环境
 ```
@@ -20,15 +24,11 @@ Registry: external.system.auto.import.disabled=true, debugger.watches.in.variabl
 
 打开AndroidStudio创建NDK项目，C++ 工具链我选的C11版本
 
+![image-20230825153844716](E:\Android\Bilibili\README.assets\image-20230825153844716.png)
 
 
 
 
-
-
-
-
-  
 
 
 
