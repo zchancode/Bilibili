@@ -24,11 +24,7 @@ Registry: external.system.auto.import.disabled=true, debugger.watches.in.variabl
 
 打开AndroidStudio创建NDK项目，C++ 工具链我选的C11版本
 
-![image-20230825153844716](E:\Android\Bilibili\README.assets\image-20230825153844716.png)
-
-
-
-
+![image-20230825154450049](README.assets/image-20230825154450049.png)
 
 
 
