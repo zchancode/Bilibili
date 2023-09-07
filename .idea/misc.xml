@@ -3,7 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/main_bottom_bar_textcolor.xml" value="0.183" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/main_toolbar_login_btn.xml" value="0.187" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/shape_bannar_video_item.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/shape_list_video_item.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/shape_main_search_edittext_cursor.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/shape_main_toolbar_search_box.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/drawable/shape_search_edittext_cursor.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/layout/main_bottom_bar_text.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/layout/main_bottom_bar_view.xml" value="0.4466666666666667" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/layout/main_search_box.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/layout/main_video_bannar_item.xml" value="0.1758974358974359" />
+        <entry key="..\:/Android/Bilibili/View/src/main/res/layout/main_video_list_item.xml" value="0.17692307692307693" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/drawable/shape_main_search_edittext_cursor.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/drawable/shape_main_toolbar_login_btn.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/layout/activity_category.xml" value="0.1758974358974359" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/layout/activity_communicate.xml" value="0.1758974358974359" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/layout/activity_dynamic.xml" value="0.17692307692307693" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/layout/activity_home.xml" value="0.1758974358974359" />
         <entry key="..\:/Android/Bilibili/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/layout/activity_video_list.xml" value="0.1" />
+        <entry key="..\:/Android/Bilibili/app/src/main/res/layout/toolbar_include.xml" value="0.1758974358974359" />
       </map>
     </option>
   </component>
