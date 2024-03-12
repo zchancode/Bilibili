@@ -13,9 +13,6 @@
             android:name=".ScreenService"
             android:foregroundServiceType="mediaProjection" />
 
-        <activity
-            android:name=".CameraActivity"
-            android:screenOrientation="landscape" />
         <activity android:name=".CameraXActivity" />
     </application>
 

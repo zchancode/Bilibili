@@ -14,14 +14,7 @@ import android.view.View;
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
-import com.example.zchan_audio.ui.AudioActivity;
-import com.example.zchan_opengl.ui.GLActivity;
-import com.example.zchan_player.LiveActivity;
-import com.example.zchan_rtmp.CameraActivity;
-import com.example.zchan_rtmp.CameraXActivity;
 import com.example.zchan_rtmp.CreateRoomActivity;
-import com.example.zchan_rtmp.ScreenActivity;
-import com.example.zchan_yuv.ui.YuvActivity;
 
 public class MainActivity extends AppCompatActivity {
 
