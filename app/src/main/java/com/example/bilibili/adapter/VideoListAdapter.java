@@ -1,7 +1,10 @@
 package com.example.bilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +21,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.bilibili.R;
+import com.example.bilibili.bean.LiveRoom;
+import com.example.bilibili.ui.PlayerActivity;
 import com.example.utils.SizeUtils;
+import com.example.zchan_audio.ui.AudioActivity;
+import com.example.zchan_player.LiveActivity;
+import com.example.zchan_rtmp.LiveImp;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -29,9 +38,11 @@ import java.util.ArrayList;
  */
 public class VideoListAdapter extends RecyclerView.Adapter {
     private final ArrayList<Drawable> mDrawables2;
-    public ArrayList<String> itemNameList, itemUpNameList;
+    private ArrayList<LiveRoom> roomList;
     private Context context;
-    public ArrayList<Drawable> itemPicList;
+    private ViewPager mBannerView;
+    private Handler mHandler = new Handler();
+
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
@@ -44,15 +55,12 @@ public class VideoListAdapter extends RecyclerView.Adapter {
     }
 
 
-    public VideoListAdapter(Context context, ArrayList itemPicList, ArrayList itemNameList, ArrayList itemUpNameList) {
+    public VideoListAdapter(Context context, ArrayList roomList) {
         this.context = context;
-        this.itemPicList = itemPicList;
-        this.itemNameList = itemNameList;
-        this.itemUpNameList = itemUpNameList;
+        this.roomList = roomList;
         mDrawables2 = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             mDrawables2.add(context.getResources().getDrawable(com.example.view.R.drawable.search_loading_0));
-
         }
     }
 
@@ -94,25 +102,66 @@ public class VideoListAdapter extends RecyclerView.Adapter {
 
     }
 
+    private void start() {
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.postDelayed(bannerRunnable, 3000);
+    }
+
+    private Runnable bannerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mBannerView.getCurrentItem() == 3)
+                mBannerView.setCurrentItem(0);
+            else mBannerView.setCurrentItem(mBannerView.getCurrentItem() + 1);
+            mHandler.postDelayed(bannerRunnable, 1000);
+        }
+    };
+
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         VideoHolder videoHolder = (VideoHolder) holder;
         if (getItemViewType(position) == 0) {
-            ViewPager bannerView = videoHolder.itemBannar;
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) bannerView.getLayoutParams();
+            mBannerView = videoHolder.itemBannar;
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mBannerView.getLayoutParams();
             lp.width = LinearLayout.LayoutParams.MATCH_PARENT;
             lp.height = SizeUtils.dip2px(context, 200);
-            bannerView.setLayoutParams(lp);
-            bannerView.setAdapter(new BannerAdapter(mDrawables2));
+            start();
+            mBannerView.setLayoutParams(lp);
+            mBannerView.setAdapter(new BannerAdapter(mDrawables2));
+            mBannerView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    start();
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+
         } else {
-            videoHolder.itemPic.setImageDrawable(itemPicList.get(position-1));
-            videoHolder.itemName.setText(itemNameList.get(position-1));
-            videoHolder.itemUpName.setText(itemUpNameList.get(position-1));
+            Picasso.get().load(roomList.get(position - 1).getRoomPic()).into(videoHolder.itemPic);
+            videoHolder.itemName.setText(roomList.get(position - 1).getRoomName());
+            videoHolder.itemUpName.setText(roomList.get(position - 1).getRoomUpName());
+            videoHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LiveActivity.class);
+                    intent.putExtra("url", roomList.get(position - 1).getRoomUrl());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
     @Override
     public int getItemCount() {
-        return itemNameList.size()+1;
+        return roomList.size() + 1;
     }
 }

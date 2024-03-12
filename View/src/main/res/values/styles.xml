@@ -5,4 +5,8 @@
         <item name="colorControlActivated">#FB7299</item>
     </style>
 
+    <style name="bulletEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#FB7299</item>
+    </style>
+
 </resources>

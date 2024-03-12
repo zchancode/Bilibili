@@ -15,3 +15,9 @@ dependencyResolutionManagement {
 rootProject.name = "Bilibili"
 include ':app'
 include ':View'
+include ':zchan_player'
+include ':zchan_rtmp'
+include ':zchan_audio'
+include ':zchan_yuv'
+include ':zchan_opengl'
+include ':zchan_play2'
