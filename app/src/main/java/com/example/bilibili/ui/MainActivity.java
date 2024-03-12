@@ -14,7 +14,6 @@ import android.view.View;
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
-import com.example.zchan_rtmp.CreateRoomActivity;
 
 public class MainActivity extends AppCompatActivity {
 

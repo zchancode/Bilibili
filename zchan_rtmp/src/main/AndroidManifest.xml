@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".CreateRoomActivity"
+            android:name="com.example.bilibili.ui.CreateRoomActivity"
             android:exported="false" />
         <activity
             android:name=".ScreenActivity"

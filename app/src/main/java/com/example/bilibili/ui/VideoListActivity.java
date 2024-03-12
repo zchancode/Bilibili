@@ -44,7 +44,7 @@ public class VideoListActivity extends Fragment {
         mRecyclerView = root.findViewById(R.id.videoList);
         ArrayList<LiveRoom> liveRooms = new ArrayList<>();
         mFetchLivesTask = new FetchLivesTask();
-        mFetchLivesTask.execute("http://172.20.10.2/bilibili/index.php");
+        mFetchLivesTask.execute("http://172.20.10.2/bilibili/api.php?api=getLives");
         mFetchLivesTask.setResponseListener(response -> {
             liveRooms.add(response);
         });

@@ -91,7 +91,11 @@ void video() {
         yuv_frame->linesize[0] = video_data.yline_size;
         yuv_frame->linesize[1] = video_data.uvline_size;
         yuv_frame->pts = video_data.pts;
-        avcodec_send_frame(vc, yuv_frame);
+        int re = avcodec_send_frame(vc, yuv_frame);
+        if (re != 0) {
+            LOGE("avcodec_send_frame failed");
+            continue;
+        }
         avcodec_receive_packet(vc, pkt);
 
         //free video_data's memory
