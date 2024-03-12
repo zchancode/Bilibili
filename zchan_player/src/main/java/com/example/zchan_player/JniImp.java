@@ -20,7 +20,4 @@ public class JniImp {
 
     public static native void resumeVideo();
 
-    public static native void seekTo(int position);
-
-    public static native int getCurrentPosition();
 }

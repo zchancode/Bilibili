@@ -5,28 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.bilibili.R;
 import com.example.bilibili.bean.LiveRoom;
-import com.example.bilibili.ui.PlayerActivity;
 import com.example.utils.SizeUtils;
-import com.example.zchan_audio.ui.AudioActivity;
 import com.example.zchan_player.LiveActivity;
-import com.example.zchan_rtmp.LiveImp;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

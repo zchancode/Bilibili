@@ -643,14 +643,3 @@ Java_com_example_zchan_1player_JniImp_resumeVideo(JNIEnv *env, jclass clazz) {
     (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
 
 }
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_example_zchan_1player_JniImp_seekTo(JNIEnv *env, jclass clazz, jint position) {
-    // TODO: implement seekTo()
-}
-extern "C"
-JNIEXPORT jint JNICALL
-Java_com_example_zchan_1player_JniImp_getCurrentPosition(JNIEnv *env, jclass clazz) {
-    // TODO: implement getCurrentPosition()
-    return 0;
-}
