@@ -15,6 +15,9 @@ public class OrgRTMPActivity extends AppCompatActivity {
         System.loadLibrary("zchan_orgrtmp");
     }
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
