@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         changeFragment(new DynamicActivity());
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this, OrgRTMPActivity.class));
+                        startActivity(new Intent(MainActivity.this, ScreenActivity.class));
                         break;
                     case 3:
                         changeFragment(new CategoryActivity());

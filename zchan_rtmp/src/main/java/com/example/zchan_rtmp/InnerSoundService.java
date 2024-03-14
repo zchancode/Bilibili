@@ -129,12 +129,14 @@ public class InnerSoundService extends Service {
 
         byte[] bufferInner = new byte[1024 * 2 * 2];
         byte[] bufferMic = new byte[1024 * 2 * 2];
+        byte[] buffer = new byte[1024 * 2 * 2];
         while (isRunning) {
             int numInr = mRecord.read(bufferInner, 0, 1024 * 2 * 2);
             int numMic = mMicRecord.read(bufferMic, 0, 1024 * 2 * 2);
-            double mVolumeInr = calculateDecibels(bufferInner, numInr);
-            double mVolumeMic = calculateDecibels(bufferMic, numMic);
-            pushAudio(bufferInner, numInr);
+            for (int i = 0; i < numInr; i++) {
+                buffer[i] = (byte) (bufferInner[i] * 0.5 + bufferMic[i] * 0.5);
+            }
+            pushAudio(buffer, numInr);
         }
 
         isExit = true;
@@ -171,7 +173,7 @@ public class InnerSoundService extends Service {
                 320, 640, 128,
                 VIRTUAL_DISPLAY_FLAGS,
                 mImageReader.getSurface(), null, null);
-        init(320, 640,"rtmp://172.20.10.2:1935/live/hls");
+        init(320, 640,"rtmp://139.224.68.119:1935/rtmplive_demo/hls");
         audioThread.start();
         mImageReader.acquireNextImage();
         mImageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
