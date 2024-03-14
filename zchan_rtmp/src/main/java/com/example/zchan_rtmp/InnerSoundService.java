@@ -92,14 +92,11 @@ public class InnerSoundService extends Service {
 
     public double calculateDecibels(byte[] audioData, int readSize) {
         long sum = 0;
-        // 将字节转换为 16 位 PCM 值
         for (int i = 0; i < readSize; i += 2) {
             int sample = (audioData[i + 1] << 8) | (audioData[i] & 0xFF);
             sum += Math.abs(sample);
         }
         double average = sum / (readSize / 2.0);
-
-        // 转换为分贝
         double decibel = 20 * Math.log10(average / 32768.0);
         return decibel;
     }

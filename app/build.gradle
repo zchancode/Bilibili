@@ -77,6 +77,8 @@ dependencies {
     implementation project(path: ':zchan_audio')
     implementation project(path: ':zchan_yuv')
     implementation project(path: ':zchan_opengl')
+    implementation project(path: ':zchan_orgrtmp')
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
