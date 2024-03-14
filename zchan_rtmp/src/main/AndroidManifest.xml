@@ -3,14 +3,14 @@
 
     <application>
         <activity
-            android:name="com.example.bilibili.ui.CreateRoomActivity"
-            android:exported="false" />
-        <activity
             android:name=".ScreenActivity"
             android:exported="false" />
 
         <service
             android:name=".ScreenService"
+            android:foregroundServiceType="mediaProjection" />
+        <service
+            android:name=".InnerSoundService"
             android:foregroundServiceType="mediaProjection" />
 
         <activity android:name=".CameraXActivity" />

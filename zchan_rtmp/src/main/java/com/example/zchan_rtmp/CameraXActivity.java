@@ -80,7 +80,7 @@ public class CameraXActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camerax);
-        this.url = getIntent().getStringExtra("url");
+        this.url = "rtmp://172.20.10.2:1935/live/hls";
         viewFinder = findViewById(R.id.viewFinder);
         startCamera();
     }

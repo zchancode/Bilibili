@@ -14,6 +14,9 @@ import android.view.View;
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
+import com.example.zchan_rtmp.CameraXActivity;
+import com.example.zchan_rtmp.InnerSoundService;
+import com.example.zchan_rtmp.ScreenActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         changeFragment(new DynamicActivity());
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this, CreateRoomActivity.class));
+                        startActivity(new Intent(MainActivity.this, ScreenActivity.class));
                         break;
                     case 3:
                         changeFragment(new CategoryActivity());

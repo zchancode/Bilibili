@@ -207,7 +207,7 @@ void init(int width, int height, const char *url) {
     vc->flags |= AV_CODEC_FLAG_GLOBAL_HEADER; //全局参数
     vc->codec_id = video_codec->id;
     vc->thread_count = 8;
-    vc->bit_rate = 20 * 1024 * 8;
+    vc->bit_rate = 200 * 1024 * 8;
     vc->width = width;
     vc->height = height;
     vc->time_base = {1, 1000000};
@@ -215,6 +215,10 @@ void init(int width, int height, const char *url) {
     vc->gop_size = 25;
     vc->max_b_frames = 1;
     vc->pix_fmt = AV_PIX_FMT_NV12;
+    vsc = sws_getCachedContext(vsc,
+                               vc->width, vc->height, AV_PIX_FMT_RGBA,
+                               vc->width, vc->height, AV_PIX_FMT_NV12,
+                               SWS_BICUBIC, 0, 0, 0);
     avcodec_open2(vc, video_codec, 0);
 
 
@@ -264,8 +268,6 @@ void init(int width, int height, const char *url) {
     LOGE("avio_open success")
     avformat_write_header(ic, NULL);
 }
-
-
 
 
 void startPush() {
@@ -427,4 +429,42 @@ Java_com_example_zchan_1rtmp_LiveImp_pushVideoYUV420NV12(JNIEnv *env, jclass cla
     video_mux.unlock();
     env->ReleaseByteArrayElements(y, y_data, 0);
     env->ReleaseByteArrayElements(uv, uv_data, 0);
+}
+
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_zchan_1rtmp_LiveImp_pushVideoRGBA(JNIEnv *env, jclass clazz, jbyteArray rgba,
+                                                   jint width, jint height) {
+    jbyte *rgba_data = env->GetByteArrayElements(rgba, NULL);
+    uint8_t *indata[AV_NUM_DATA_POINTERS] = {0};
+    indata[0] = (uint8_t *) rgba_data;
+    int insize[AV_NUM_DATA_POINTERS] = {0};
+    insize[0] = width * 4;
+
+    uint8_t *yuv_data[2] = {0};
+    yuv_data[0] = (uint8_t *) malloc(width * height);
+    yuv_data[1] = (uint8_t *) malloc(width * height / 2);
+    uint8_t *outdata[AV_NUM_DATA_POINTERS] = {0};
+    outdata[0] = yuv_data[0];
+    outdata[1] = yuv_data[1];
+    int outsize[AV_NUM_DATA_POINTERS] = {0};
+    outsize[0] = width;
+    outsize[1] = width;
+    sws_scale(vsc, indata, insize, 0, height, outdata, outsize);
+    NV12Data data;
+    data.ydata = (int8_t *) yuv_data[0];
+    data.uvdata = (int8_t *) yuv_data[1];
+    data.yline_size = width;
+    data.uvline_size = width;
+    data.pts = av_gettime();
+    while (video_queue.size() > 100 && isRunning) {
+        av_usleep(1);
+    }
+    video_mux.lock();
+    video_queue.push(data);
+    video_mux.unlock();
+
+    env->ReleaseByteArrayElements(rgba, rgba_data, 0);
 }

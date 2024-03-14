@@ -12,12 +12,13 @@ public class LiveImp {
 
     public static native void pushVideo(long mat_addr);
 
+    public static native void pushVideoRGBA(byte[] rgba, int width, int height);
 
     public static native void pushVideoYUV420NV12(byte[] y, byte[] uv, int width, int height);
 
     public static native void pushAudio(byte[] data, int len);
 
-    public static native void init(int width, int height,String url);
+    public static native void init(int width, int height, String url);
 
     public static native void stopPush();
 

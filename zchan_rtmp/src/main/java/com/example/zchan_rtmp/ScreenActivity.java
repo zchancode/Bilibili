@@ -26,7 +26,7 @@ public class ScreenActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SCREEN_RECORD && resultCode == RESULT_OK) {
-            Intent serviceIntent = new Intent(this, ScreenService.class);
+            Intent serviceIntent = new Intent(this, InnerSoundService.class);
             serviceIntent.putExtra("result_code", resultCode);
             serviceIntent.putExtra("result_data", data);
             ContextCompat.startForegroundService(this, serviceIntent);
