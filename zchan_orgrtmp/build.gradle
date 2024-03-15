@@ -16,6 +16,7 @@ android {
                 cppFlags '-std=c++11 -frtti -fexceptions'
             }
         }
+
         ndk {
             abiFilters 'x86', 'armeabi-v7a'
         }
@@ -45,6 +46,11 @@ android {
 
 dependencies {
     implementation project(path: ':View')
+    def camerax_version = "1.2.3" // 请检查最新版本
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-view:${camerax_version}"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'

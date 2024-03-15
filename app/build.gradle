@@ -11,6 +11,21 @@ android {
         pickFirst 'jniLibs/armabi-v7a/libffmpeg.so'
         pickFirst 'jniLibs/x86/libffmpeg.so'
     }
+
+    packagingOptions {
+        pickFirst 'jniLibs/armeabi-v7a/fdk-aac.so'
+        pickFirst 'jniLibs/x86/fdk-aac.so'
+        pickFirst 'jniLibs/armeabi-v7a/libavutil.so'
+        pickFirst 'jniLibs/x86/libavutil.so'
+        pickFirst 'jniLibs/armeabi-v7a/libswscale.so'
+        pickFirst 'jniLibs/x86/libswscale.so'
+        pickFirst 'jniLibs/armeabi-v7a/libswresample.so'
+        pickFirst 'jniLibs/x86/libswresample.so'
+        pickFirst 'jniLibs/armeabi-v7a/libx264.so'
+        pickFirst 'jniLibs/x86/libx264.so'
+    }
+
+
     defaultConfig {
         applicationId "com.example.bilibili"
         minSdk 21

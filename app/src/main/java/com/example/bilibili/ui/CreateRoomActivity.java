@@ -18,7 +18,7 @@ import com.example.bilibili.R;
 import com.example.bilibili.service.CreateLiveTask;
 import com.example.bilibili.service.ImageUploader;
 import com.example.bilibili.utils.ImagePicker;
-import com.example.zchan_rtmp.CameraXActivity;
+//import com.example.zchan_rtmp.CameraXActivity;
 import com.squareup.picasso.Picasso;
 
 public class CreateRoomActivity extends AppCompatActivity {
@@ -51,9 +51,9 @@ public class CreateRoomActivity extends AppCompatActivity {
                 }
             });
             mCreateLiveTask.execute("http://172.20.10.2/bilibili/api.php?api=createLive&roomName=" + roomName.getText().toString() + "&roomUpName=upname&roomPic=pic&roomUrl=url");
-            Intent intent = new Intent(this, CameraXActivity.class);
-            intent.putExtra("url", "rtmp://172.20.10.2:1935/" + roomNum.getText().toString() + "/hls");
-            startActivity(intent);
+//            Intent intent = new Intent(this, CameraXActivity.class);
+//            intent.putExtra("url", "rtmp://172.20.10.2:1935/" + roomNum.getText().toString() + "/hls");
+//            startActivity(intent);
             finish();
         });
     }
