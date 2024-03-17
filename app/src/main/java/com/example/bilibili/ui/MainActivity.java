@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         View popupView = inflater.inflate(com.example.view.R.layout.popup_window_layout, null);
 
         PopupWindow popupWindow = new PopupWindow(popupView,
-                360,
-                130);
+                com.example.utils.SizeUtils.dip2px(this, 160),
+                com.example.utils.SizeUtils.dip2px(this, 65));
 
         // Specify the popup window's background, necessary for the elevation and outline to show
         popupWindow.setBackgroundDrawable(getResources().getDrawable(com.example.view.R.drawable.popup_background));
