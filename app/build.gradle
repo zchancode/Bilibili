@@ -88,7 +88,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation project(path: ':zchan_player')
-    implementation project(path: ':zchan_rtmp')
+    implementation project(path: ':zchan_ffmpegrtmp')
     implementation project(path: ':zchan_audio')
     implementation project(path: ':zchan_yuv')
     implementation project(path: ':zchan_opengl')

@@ -7,7 +7,7 @@ package com.example.zchan_rtmp;
  */
 public class LiveImp {
     static {
-        System.loadLibrary("zchan_rtmp");
+        System.loadLibrary("zchan_ffmpegrtmp");
     }
 
     public static native void pushVideo(long mat_addr);

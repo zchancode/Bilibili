@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 3.22.1)
-project("zchan_rtmp")
+project("zchan_ffmpegrtmp")
 file(GLOB src *.cpp)
 include_directories(include/ffmpeg)
 include_directories(include)

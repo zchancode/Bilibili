@@ -42,7 +42,7 @@ import java.nio.ByteBuffer;
  */
 public class GameRecordService extends Service {
     static {
-        System.loadLibrary("zchan_rtmp");
+        System.loadLibrary("zchan_ffmpegrtmp");
     }
     private MediaProjectionManager mProjectionManager;
     private static final int VIRTUAL_DISPLAY_FLAGS = DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY | DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC;

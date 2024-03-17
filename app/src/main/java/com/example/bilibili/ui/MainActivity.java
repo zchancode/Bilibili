@@ -15,6 +15,7 @@ import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
 import com.example.zchan_orgrtmp.ui.OrgRTMPActivity;
+import com.example.zchan_rtmp.CameraXActivity;
 //import com.example.zchan_rtmp.ScreenActivity;
 
 public class MainActivity extends AppCompatActivity {

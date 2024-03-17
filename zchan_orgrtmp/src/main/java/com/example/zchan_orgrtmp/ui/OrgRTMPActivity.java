@@ -23,7 +23,6 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 
 public class OrgRTMPActivity extends AppCompatActivity {
-    private Preview preview = null;
     private ImageAnalysis imageAnalysis;
     private PreviewView viewFinder;
     private String url;
@@ -102,11 +101,10 @@ public class OrgRTMPActivity extends AppCompatActivity {
             if (!isInited) {
                 isRunning = true;
                 isExit = false;
-                audio_thread.start();
                 JniImp.initFaac();
-                JniImp.initX264(width, height);
-                JniImp.init(width, height, url);
-                JniImp.startLive();
+                JniImp.initX264(width, height, 30, 800000);
+                JniImp.startLive(url);
+                audio_thread.start();
                 isInited = true;
             }
             //loge format is which type of image not number is type example 17 is YUV_420_888
@@ -118,9 +116,7 @@ public class OrgRTMPActivity extends AppCompatActivity {
                 byte[] uvBytes = new byte[uvBuffer.remaining()];//uv uv
                 yBuffer.get(yBytes);
                 uvBuffer.get(uvBytes);
-
                 JniImp.pushVideo(yBytes, uvBytes, width, height);
-
                 image.close();
             }
         });
@@ -130,6 +126,7 @@ public class OrgRTMPActivity extends AppCompatActivity {
         cameraProvider.unbindAll();
         cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);
     }
+
 
 
     @Override
@@ -142,10 +139,11 @@ public class OrgRTMPActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        //release camera
+        imageAnalysis.clearAnalyzer();
         mRecord.stop();
         audio_thread.interrupt();
-//        JniImp.stopPush();
-
+        JniImp.stopLive();
         super.onDestroy();
     }
 }

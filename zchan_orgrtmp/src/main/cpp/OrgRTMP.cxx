@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <thread>
 #include <libfaac/faac.h>
-
 #include <libx264/x264.h>
 
 
@@ -15,18 +14,11 @@ using namespace std;
 extern "C" {
 #include "librtmp/rtmp.h"
 #include "libavutil/time.h"
-
-
 }
 
 struct Live {
-    int16_t sps_len;
-    int16_t pps_len;
-    int8_t *sps;
-    int8_t *pps;
     RTMP *rtmp;
     string url;
-
     void release() {
         if (rtmp) {
             RTMP_Close(rtmp);
@@ -35,9 +27,10 @@ struct Live {
     }
 };
 
-Live *live = new Live();
-
+Live *live = 0;
 void connectRTMP(const char *url) {
+    if(live == nullptr)
+        live = new Live();
     live->url = string(url);
     live->rtmp = RTMP_Alloc();
     RTMP_Init(live->rtmp);
@@ -47,6 +40,7 @@ void connectRTMP(const char *url) {
     RTMP_Connect(live->rtmp, 0);
     int re = RTMP_ConnectStream(live->rtmp, 0);
     if (!re) {
+        live->release();
         LOGE("connect failed");
     }
     LOGE("connect success");
@@ -72,7 +66,16 @@ struct XNV12Data {
     int height;
     int len;
     int64_t tms;
-
+    void release() {
+        if (ydata) {
+            free(ydata);
+            ydata = nullptr;
+        }
+        if (uvdata) {
+            free(uvdata);
+            uvdata = nullptr;
+        }
+    }
 };
 
 struct FrameData {
@@ -92,12 +95,10 @@ u_long inputSamples;
 faacEncHandle audioCodec = 0;
 u_long maxOutputBytes;
 
-int m_frameLen;
 x264_t *videoCodec = 0;
 x264_picture_t *pic_in = 0;
 
 RTMPPacket *createAudioPacket(AudioData data) {
-
     int bodySize = 2 + data.len;
     RTMPPacket *packet = new RTMPPacket;
     RTMPPacket_Alloc(packet, bodySize);
@@ -115,107 +116,43 @@ RTMPPacket *createAudioPacket(AudioData data) {
 }
 
 
-int setVideoEncInfo(int width, int height, int fps = 25, int bitrate = 200000) {
-    m_frameLen = width * height;
-    if (videoCodec) {
-        x264_encoder_close(videoCodec);
-        videoCodec = nullptr;
-    }
-    if (pic_in) {
-        x264_picture_clean(pic_in);
-        delete pic_in;
-        pic_in = nullptr;
-    }
-
-    //setting x264 params
-    x264_param_t param;
-    int ret = x264_param_default_preset(&param, "ultrafast", "zerolatency");
-    if (ret < 0) {
-        return ret;
-    }
-    param.i_level_idc = 32;
-    //input format
-    param.i_csp = X264_CSP_NV12;
-    param.i_width = width;
-    param.i_height = height;
-    //no B frame
-    param.i_bframe = 0;
-    //i_rc_method:bitrate control, CQP(constant quality), CRF(constant bitrate), ABR(average bitrate)
-    param.rc.i_rc_method = X264_RC_ABR;
-    //bitrate(Kbps)
-    param.rc.i_bitrate = bitrate / 1024;
-    //max bitrate
-    param.rc.i_vbv_max_bitrate = bitrate / 1024 * 1.2;
-    //unit:kbps
-    param.rc.i_vbv_buffer_size = bitrate / 1024;
-
-    //frame rate
-    param.i_fps_num = fps;
-    param.i_fps_den = 1;
-    param.i_timebase_den = param.i_fps_num;
-    param.i_timebase_num = param.i_fps_den;
-    //using fps
-    param.b_vfr_input = 0;
-    //key frame interval(GOP)
-    param.i_keyint_max = fps * 2;
-    //each key frame attaches sps/pps
-    param.b_repeat_headers = 1;
-    //thread number
-    param.i_threads = 1;
-
-    ret = x264_param_apply_profile(&param, "baseline");
-    if (ret < 0) {
-        return ret;
-    }
-    //open encoder
-    videoCodec = x264_encoder_open(&param);
-    if (!videoCodec) {
-        return -1;
-    }
-    pic_in = new x264_picture_t();
-    x264_picture_alloc(pic_in, X264_CSP_NV12, width, height);
-    return ret;
-}
 
 RTMPPacket *createSps(uint8_t *sps, uint8_t *pps, int sps_len, int pps_len) {
     int bodySize = 13 + sps_len + 3 + pps_len;
     auto *packet = new RTMPPacket();
     RTMPPacket_Alloc(packet, bodySize);
     int i = 0;
-// type
+    // type
     packet->m_body[i++] = 0x17;
     packet->m_body[i++] = 0x00;
-// timestamp
+    // timestamp
     packet->m_body[i++] = 0x00;
     packet->m_body[i++] = 0x00;
     packet->m_body[i++] = 0x00;
-
-//version
+    //version
     packet->m_body[i++] = 0x01;
-// profile
+    // profile
     packet->m_body[i++] = sps[1];
     packet->m_body[i++] = sps[2];
     packet->m_body[i++] = sps[3];
     packet->m_body[i++] = 0xFF;
-
-//sps
+    //sps
     packet->m_body[i++] = 0xE1;
-//sps len
+    //sps len
     packet->m_body[i++] = (sps_len >> 8) & 0xFF;
     packet->m_body[i++] = sps_len & 0xFF;
     memcpy(&packet->m_body[i], sps, sps_len);
     i += sps_len;
-
-//pps
+    //pps
     packet->m_body[i++] = 0x01;
     packet->m_body[i++] = (pps_len >> 8) & 0xFF;
     packet->m_body[i++] = (pps_len) & 0xFF;
     memcpy(&packet->m_body[i], pps, pps_len);
-//video
+    //video
     packet->m_packetType = RTMP_PACKET_TYPE_VIDEO;
     packet->m_nBodySize = bodySize;
     packet->m_nChannel = 0x10;
-//sps and pps no timestamp
+    //sps and pps no timestamp
     packet->m_nTimeStamp = 0;
     packet->m_hasAbsTimestamp = 0;
     packet->m_headerType = RTMP_PACKET_SIZE_MEDIUM;
@@ -272,19 +209,16 @@ void sendPacket(RTMPPacket *packet) {
         connectRTMP(live->url.c_str());//reconnect
     }
 }
+
 void encodeVideo(XNV12Data data) {
-    if (!pic_in)
-        return;
     memcpy(pic_in->img.plane[0], data.ydata, data.width * data.height); // Y分量
     memcpy(pic_in->img.plane[1], data.uvdata, data.width * data.height / 2); // UV分量
-
-    x264_nal_t *pp_nal;
-    int pi_nal;
-    x264_picture_t pic_out;
+    x264_nal_t *pp_nal;//NAL
+    int pi_nal;//NAL数量
+    x264_picture_t pic_out;//输出图片
     x264_encoder_encode(videoCodec, &pp_nal, &pi_nal, pic_in, &pic_out);
-
     int pps_len, sps_len = 0;
-    uint8_t sps[100];
+    uint8_t sps[100];//sps
     uint8_t pps[100];
     for (int i = 0; i < pi_nal; ++i) {
         x264_nal_t nal = pp_nal[i];
@@ -305,22 +239,14 @@ void encodeVideo(XNV12Data data) {
 
 
 
-void sendAudio(AudioData data) {
-    RTMPPacket *packet = createAudioPacket(data);
-    packet->m_nInfoField2 = 0;
-
-    sendPacket(packet);
-    free(data.data);
-}
-
-void sendVideo(XNV12Data data) {
-    encodeVideo(data);
-    free(data.ydata);
-    free(data.uvdata);
-}
 
 
-void startLive() {
+
+void startLive(string url) {
+    isRunning = true;
+    isExit[0] = false;
+
+    connectRTMP(url.data());
     while (isRunning) {
         datasMutex.lock();
         if (datas.empty()) {
@@ -332,12 +258,14 @@ void startLive() {
         datas.pop();
         datasMutex.unlock();
         if (data.type == 1) {
-            sendAudio(data.audioData);
+            RTMPPacket *packet = createAudioPacket(data.audioData);
+            sendPacket(packet);
+            data.audioData.release();
         }
         if (data.type == 2) {
-            sendVideo(data.xnv12Data);
+            encodeVideo(data.xnv12Data);
+            data.xnv12Data.release();
         }
-
     }
     isExit[0] = true;
 
@@ -357,6 +285,9 @@ Java_com_example_zchan_1orgrtmp_JniImp_pushAudio(JNIEnv *env, jclass clazz, jbyt
     frameData.audioData.data = outbuf;
     frameData.audioData.tms = av_gettime();
     frameData.audioData.len = outsize;
+    while (datas.size() > 100) {
+        usleep(10);
+    }
     datasMutex.lock();
     datas.push(frameData);
     datasMutex.unlock();
@@ -374,15 +305,16 @@ Java_com_example_zchan_1orgrtmp_JniImp_pushVideo(JNIEnv *env, jclass clazz, jbyt
     int8_t *uvdata = (int8_t *) malloc(width * height / 2);
     memcpy(ydata, y_data, width * height);
     memcpy(uvdata, uv_data, width * height / 2);
-
     FrameData frameData;
     frameData.type = 2;
-
     frameData.xnv12Data.ydata = ydata;
     frameData.xnv12Data.uvdata = uvdata;
     frameData.xnv12Data.tms = av_gettime();
     frameData.xnv12Data.width = width;
     frameData.xnv12Data.height = height;
+    while (datas.size() > 100) {
+        usleep(10);
+    }
     datasMutex.lock();
     datas.push(frameData);
     datasMutex.unlock();
@@ -396,6 +328,7 @@ Java_com_example_zchan_1orgrtmp_JniImp_pushVideo(JNIEnv *env, jclass clazz, jbyt
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_zchan_1orgrtmp_JniImp_initFaac(JNIEnv *env, jclass clazz) {
+
     audioCodec = faacEncOpen(44100, 2, &inputSamples, &maxOutputBytes);
     faacEncConfigurationPtr config = faacEncGetCurrentConfiguration(audioCodec);
     config->mpegVersion = MPEG4;
@@ -404,29 +337,93 @@ Java_com_example_zchan_1orgrtmp_JniImp_initFaac(JNIEnv *env, jclass clazz) {
     config->outputFormat = 1;
     faacEncSetConfiguration(audioCodec, config);
 }
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_example_zchan_1orgrtmp_JniImp_init(JNIEnv *env, jclass clazz, jint width, jint height,
-                                            jstring url_) {
-    const char *url = env->GetStringUTFChars(url_, 0);
-    connectRTMP(url);
-    env->ReleaseStringUTFChars(url_, url);
-}
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_example_zchan_1orgrtmp_JniImp_startLive(JNIEnv *env, jclass clazz) {
-    thread t1(startLive);
-    t1.detach();
-}
-
-
-
-
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_zchan_1orgrtmp_JniImp_initX264(JNIEnv *env, jclass clazz, jint width,
-                                                jint height) {
-    setVideoEncInfo(width, height);
+                                                jint height, jint fps, jint bitrate) {
+    //setting x264 params
+    x264_param_t param;
+    x264_param_default_preset(&param, "ultrafast", "zerolatency");
+    param.i_level_idc = 32;
+    //input format
+    param.i_csp = X264_CSP_NV12;
+    param.i_width = width;
+    param.i_height = height;
+    //no B frame
+    param.i_bframe = 0;
+    //i_rc_method:bitrate control, CQP(constant quality), CRF(constant bitrate), ABR(average bitrate)
+    param.rc.i_rc_method = X264_RC_ABR;
+    //bitrate(Kbps)
+    param.rc.i_bitrate = bitrate / 1024;
+    //max bitrate
+    param.rc.i_vbv_max_bitrate = bitrate / 1024 * 1.2;
+    //unit:kbps
+    param.rc.i_vbv_buffer_size = bitrate / 1024;
+
+    //frame rate
+    param.i_fps_num = fps;
+    param.i_fps_den = 1;
+    param.i_timebase_den = param.i_fps_num;
+    param.i_timebase_num = param.i_fps_den;
+    //using fps
+    param.b_vfr_input = 0;
+    //key frame interval(GOP)
+    param.i_keyint_max = fps * 2;
+    //each key frame attaches sps/pps
+    param.b_repeat_headers = 1;
+    //thread number
+    param.i_threads = 1;
+    x264_param_apply_profile(&param, "baseline");
+    //open encoder
+    videoCodec = x264_encoder_open(&param);
+    pic_in = new x264_picture_t();
+    x264_picture_alloc(pic_in, X264_CSP_NV12, width, height);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_zchan_1orgrtmp_JniImp_startLive(JNIEnv *env, jclass clazz, jstring url) {
+    const char *rtmpUrl = env->GetStringUTFChars(url, 0);
+    thread t1(startLive,string(rtmpUrl));
+    t1.detach();
+    env->ReleaseStringUTFChars(url, rtmpUrl);
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_zchan_1orgrtmp_JniImp_stopLive(JNIEnv *env, jclass clazz) {
+    isRunning = false;
+    while (!isExit[0]) {
+        usleep(1);
+    }
+    if (audioCodec) {
+        faacEncClose(audioCodec);
+        audioCodec = nullptr;
+    }
+    if (videoCodec) {
+        x264_encoder_close(videoCodec);
+        videoCodec = nullptr;
+    }
+    if (pic_in) {
+        x264_picture_clean(pic_in);
+        delete pic_in;
+        pic_in = nullptr;
+    }
+    if (live) {
+        live->release();
+        delete live;
+        live = nullptr;
+    }
+
+    while (datas.size() > 0) {
+        FrameData data = datas.front();
+        datas.pop();
+        if (data.type == 1) {
+            data.audioData.release();
+        }
+        if (data.type == 2) {
+            data.xnv12Data.release();
+        }
+    }
 }
