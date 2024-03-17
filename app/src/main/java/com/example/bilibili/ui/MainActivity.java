@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         changeFragment(new DynamicActivity());
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this, OrgRTMPActivity.class));
+                        showPopupWindow(binding.bottomBar);
                         break;
                     case 3:
                         changeFragment(new CategoryActivity());
@@ -64,14 +69,52 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void showPopupWindow(View anchorView) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(com.example.view.R.layout.popup_window_layout, null);
+
+        PopupWindow popupWindow = new PopupWindow(popupView,
+                360,
+                130);
+
+        // Specify the popup window's background, necessary for the elevation and outline to show
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(com.example.view.R.drawable.popup_background));
+
+
+        // Set elevation for Android Lollipop and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            popupWindow.setElevation(20);
+        }
+
+        // Dismiss the popup window when touched outside
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        int screenW = getResources().getDisplayMetrics().widthPixels;
+        // Show the popup window
+        popupWindow.showAsDropDown(anchorView, screenW / 2 - popupWindow.getWidth() / 2, -(anchorView.getHeight() + popupWindow.getHeight() + 40), Gravity.NO_GRAVITY);
+        popupView.findViewById(com.example.view.R.id.btn_librtmp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OrgRTMPActivity.class);
+                popupWindow.dismiss();
+                startActivity(intent);
+            }
+        });
+        popupView.findViewById(com.example.view.R.id.btn_ffmpeg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CameraXActivity.class);
+                popupWindow.dismiss();
+                startActivity(intent);
+            }
+        });
+    }
+
     private void changeFragment(Fragment fragment) {
         FragmentManager FRAGMENT_MANAGER = getSupportFragmentManager();
         FragmentTransaction TRANSACTION = FRAGMENT_MANAGER.beginTransaction();
         TRANSACTION.replace(R.id.fragmentView, fragment);
         TRANSACTION.commit();
     }
-    /**
-     * A native method that is implemented by the 'bilibili' native library,
-     * which is packaged with this application.
-     */
+
 }

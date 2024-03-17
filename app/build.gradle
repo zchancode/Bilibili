@@ -93,6 +93,8 @@ dependencies {
     implementation project(path: ':zchan_yuv')
     implementation project(path: ':zchan_opengl')
     implementation project(path: ':zchan_orgrtmp')
+    implementation project(path: ':zchan_structure')
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
