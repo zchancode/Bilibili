@@ -11,6 +11,12 @@ import com.example.zchan_structure.databinding.ActivityStructureBinding;
 
 public class StructureActivity extends AppCompatActivity {
     private ActivityStructureBinding binding;
+    private Thread mThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            JniImp.startPlay("/sdcard/input.mp4");
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +25,14 @@ public class StructureActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.playerSurface.setOnSurfaceListener(holder -> {
             JniImp.setSurface(holder.getSurface());
+            mThread.start();
         });
-        JniImp.startPlay("/sdcard/input.mp4");
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        JniImp.stopPlay();
+        mThread.interrupt();
     }
 }

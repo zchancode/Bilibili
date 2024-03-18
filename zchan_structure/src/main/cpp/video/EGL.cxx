@@ -4,24 +4,17 @@
 #pragma once
 
 #include <EGL/egl.h>
+#include <android/native_window.h>
+
 class EGL {
 private:
     EGLSurface surface = EGL_NO_SURFACE;
     EGLDisplay display = EGL_NO_DISPLAY;
     EGLContext context = EGL_NO_CONTEXT;
-    ANativeWindow *win = 0;
+    ANativeWindow *win = nullptr;
 public:
     EGL(ANativeWindow *win){
         this->win = win;
-    }
-
-    ~EGL(){
-        eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
-        eglDestroySurface(display, surface);
-        eglDestroyContext(display, context);
-        eglTerminate(display);
-    }
-    void init(){
         display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
         eglInitialize(display, 0, 0);
         EGLConfig config;
@@ -39,9 +32,19 @@ public:
                 EGL_CONTEXT_CLIENT_VERSION, 2,
                 EGL_NONE
         };
-        EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, ctx_attribs);
+        context = eglCreateContext(display, config, EGL_NO_CONTEXT, ctx_attribs);
         eglMakeCurrent(display, surface, surface, context);
+
     }
+
+    ~EGL(){
+        eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+        eglDestroySurface(display, surface);
+        eglDestroyContext(display, context);
+        eglTerminate(display);
+        ANativeWindow_release(win);
+    }
+
 
     void swapBuffers(){
         eglSwapBuffers(display, surface);

@@ -35,7 +35,11 @@ private:
             mutex.unlock();
             avcodec_send_packet(a_codec, packet);
             while (avcodec_receive_frame(a_codec, frame) == 0) {
-                LOGE("audio pts %lld", frame->pts);
+                AVFrame *audioFrame = av_frame_clone(this->frame);
+                Data data;
+                data.data = audioFrame;
+                data.pts = packet->pts;
+                sendData(data);
             }
             av_packet_free(&packet);
         }
@@ -64,6 +68,13 @@ public:
         avcodec_close(a_codec);
         avcodec_free_context(&a_codec);
         av_frame_free(&frame);
+
+        while (!audioPackets.empty()) {
+            AVPacket *packet = audioPackets.front();
+            audioPackets.pop();
+            av_packet_free(&packet);
+        }
+        LOGE("AudioDecode release");
     }
 
     void start() {
@@ -71,16 +82,20 @@ public:
         t.detach();
     }
 
+    AVCodecContext* getAVCodecContext() {
+        return this->a_codec;
+    }
+
     void stop() {
         isRunning = false;
     }
 
     void receiveData(Data data) override {
+        LOGE("receiveData %d", audioPackets.size());
         while (audioPackets.size() > 100) { //block the thread
             av_usleep(10);
         }
         AVPacket *packet = (AVPacket *) data.data;
-
         if (packet->stream_index == audioStreamIndex && packet->data != nullptr) {
             mutex.lock();
             audioPackets.push(packet);

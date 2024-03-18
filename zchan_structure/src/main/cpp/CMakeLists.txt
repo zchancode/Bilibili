@@ -5,9 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCE_FILES
         *.cxx
         decode/*.cxx
+        resample/*.cxx
         video/*.cxx
         audio/*.cxx)
 include_directories(decode)
+include_directories(resample)
 include_directories(video)
 include_directories(audio)
 include_directories(./)
@@ -23,14 +25,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         android
         GLESv3 EGL
         OpenSLES
-
-        avcodec
-        avfilter
-        avformat
-        avutil
-        swresample
-        swscale
-        x264
-        fdk-aac
-
+        ffmpeg
         log)

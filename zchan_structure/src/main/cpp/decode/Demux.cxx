@@ -1,6 +1,7 @@
 //
 // Created by Administrator on 2024-03-17.
 //
+#pragma once
 #include <IObserver.cxx>
 #include <string>
 #include "thread"
@@ -56,10 +57,11 @@ public:
     ~Demux() {
         isRunning = false;
         while (!isExit) {
-            av_usleep(1000);
+            av_usleep(10);
         }
         avformat_close_input(&avFormatContext);
         totalMs = 0;
+        LOGE("Demux release");
     }
 
     void start() {
