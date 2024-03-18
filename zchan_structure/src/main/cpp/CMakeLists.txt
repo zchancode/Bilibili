@@ -1,9 +1,36 @@
 
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.6.0)
+#c++ 17
+set(CMAKE_CXX_STANDARD 17)
+file(GLOB SOURCE_FILES
+        *.cxx
+        decode/*.cxx
+        video/*.cxx
+        audio/*.cxx)
+include_directories(decode)
+include_directories(video)
+include_directories(audio)
+include_directories(./)
+
 project("zchan_structure")
-file(GLOB SOURCE "*.cpp")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L${CMAKE_CURRENT_LIST_DIR}/../jniLibs/${ANDROID_ABI}")
+include_directories(include)
+
 add_library(${CMAKE_PROJECT_NAME} SHARED
-        ${SOURCE})
+        ${SOURCE_FILES})
+
 target_link_libraries(${CMAKE_PROJECT_NAME}
         android
+        GLESv3 EGL
+        OpenSLES
+
+        avcodec
+        avfilter
+        avformat
+        avutil
+        swresample
+        swscale
+        x264
+        fdk-aac
+
         log)

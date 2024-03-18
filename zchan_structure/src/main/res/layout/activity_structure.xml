@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.StructureActivity">
 
+    <com.example.zchan_structure.view.PlayerSurface
+        android:id="@+id/playerSurface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

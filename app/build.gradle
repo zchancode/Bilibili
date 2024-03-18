@@ -23,6 +23,12 @@ android {
         pickFirst 'jniLibs/x86/libswresample.so'
         pickFirst 'jniLibs/armeabi-v7a/libx264.so'
         pickFirst 'jniLibs/x86/libx264.so'
+        pickFirst 'jniLibs/armeabi-v7a/libavcodec.so'
+        pickFirst 'jniLibs/x86/libavcodec.so'
+        pickFirst 'jniLibs/armeabi-v7a/libavformat.so'
+        pickFirst 'jniLibs/x86/libavformat.so'
+        pickFirst 'jniLibs/armeabi-v7a/libavfilter.so'
+        pickFirst 'jniLibs/x86/libavfilter.so'
     }
 
 
