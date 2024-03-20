@@ -12,12 +12,15 @@
             <option value="$PROJECT_DIR$/View" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/zchan_audio" />
+            <option value="$PROJECT_DIR$/zchan_faacencoder" />
             <option value="$PROJECT_DIR$/zchan_ffmpegrtmp" />
+            <option value="$PROJECT_DIR$/zchan_librtmp" />
             <option value="$PROJECT_DIR$/zchan_opengl" />
             <option value="$PROJECT_DIR$/zchan_orgrtmp" />
             <option value="$PROJECT_DIR$/zchan_play2" />
             <option value="$PROJECT_DIR$/zchan_player" />
             <option value="$PROJECT_DIR$/zchan_structure" />
+            <option value="$PROJECT_DIR$/zchan_x264encoder" />
             <option value="$PROJECT_DIR$/zchan_yuv" />
           </set>
         </option>

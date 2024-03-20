@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
+import com.example.zchan_librtmp.ui.LibRTMPActivity;
 import com.example.zchan_orgrtmp.ui.OrgRTMPActivity;
 import com.example.zchan_rtmp.CameraXActivity;
 import com.example.zchan_structure.ui.StructureActivity;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         popupView.findViewById(com.example.view.R.id.btn_librtmp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StructureActivity.class);
+                Intent intent = new Intent(MainActivity.this, LibRTMPActivity.class);
                 popupWindow.dismiss();
                 startActivity(intent);
             }
