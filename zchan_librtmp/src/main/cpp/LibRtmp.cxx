@@ -7,8 +7,10 @@
 #include "SafeQueue.cxx"
 #include <thread>
 
+
 extern "C" {
-    int64_t av_gettime();
+#include "libswscale/swscale.h"
+#include "libavutil/pixfmt.h"
 }
 
 #define LOGE(FORMAT, ...) __android_log_print(ANDROID_LOG_ERROR,"zchan_librtmp",FORMAT,##__VA_ARGS__)

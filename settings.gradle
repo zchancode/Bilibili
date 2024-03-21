@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Bilibili"
 include ':app'
-include ':View'
+include ':zchan_view'
 include ':zchan_player'
 include ':zchan_ffmpegrtmp'
 include ':zchan_audio'
@@ -22,7 +22,7 @@ include ':zchan_yuv'
 include ':zchan_opengl'
 include ':zchan_play2'
 include ':zchan_orgrtmp'
-include ':zchan_structure'
+include ':zchan_player_plus'
 include ':zchan_x264encoder'
 include ':zchan_faacencoder'
 include ':zchan_librtmp'

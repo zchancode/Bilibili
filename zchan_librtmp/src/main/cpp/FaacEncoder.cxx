@@ -5,6 +5,9 @@
 #include <malloc.h>
 #include "SafeQueue.cxx"
 #include "LibRtmp.cxx"
+extern "C" {
+#include "libavutil/time.h"
+}
 class FaacEncode {
 private:
     u_long inputSamples;
@@ -48,5 +51,6 @@ public:
                                  (uint8_t *) out, maxOutputBytes);
         RTMPPacket *audioPacket = createAudioPacket(out, size, av_gettime()/1000);
         queue->pushPacket(audioPacket);
+        free(out);
     }
 };

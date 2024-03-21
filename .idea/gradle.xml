@@ -9,7 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/View" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/zchan_audio" />
             <option value="$PROJECT_DIR$/zchan_faacencoder" />
@@ -19,7 +18,8 @@
             <option value="$PROJECT_DIR$/zchan_orgrtmp" />
             <option value="$PROJECT_DIR$/zchan_play2" />
             <option value="$PROJECT_DIR$/zchan_player" />
-            <option value="$PROJECT_DIR$/zchan_structure" />
+            <option value="$PROJECT_DIR$/zchan_player_plus" />
+            <option value="$PROJECT_DIR$/zchan_view" />
             <option value="$PROJECT_DIR$/zchan_x264encoder" />
             <option value="$PROJECT_DIR$/zchan_yuv" />
           </set>

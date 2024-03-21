@@ -207,7 +207,7 @@ void init(int width, int height, const char *url) {
     vc->flags |= AV_CODEC_FLAG_GLOBAL_HEADER; //全局参数
     vc->codec_id = video_codec->id;
     vc->thread_count = 8;
-    vc->bit_rate = 200 * 1024 * 8;
+    vc->bit_rate = 2000 * 1024 * 8;
     vc->width = width;
     vc->height = height;
     vc->time_base = {1, 1000000};

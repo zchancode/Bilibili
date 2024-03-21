@@ -13,16 +13,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
+import com.example.zchan_librtmp.ui.GameRtmpActivity;
 import com.example.zchan_librtmp.ui.LibRTMPActivity;
-import com.example.zchan_orgrtmp.ui.OrgRTMPActivity;
 import com.example.zchan_rtmp.CameraXActivity;
-import com.example.zchan_structure.ui.StructureActivity;
+import com.example.zchan_rtmp.ScreenActivity;
 //import com.example.zchan_rtmp.ScreenActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         popupView.findViewById(com.example.view.R.id.btn_ffmpeg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CameraXActivity.class);
+                Intent intent = new Intent(MainActivity.this, ScreenActivity.class);
                 popupWindow.dismiss();
                 startActivity(intent);
             }

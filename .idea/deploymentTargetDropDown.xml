@@ -10,12 +10,12 @@
               <deviceKey>
                 <Key>
                   <type value="SERIAL_NUMBER" />
-                  <value value="0115ce45e380b7a3" />
+                  <value value="362cc122" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-20T06:04:26.312264800Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-03-21T07:10:07.423473600Z" />
           <targetsSelectedWithDialog>
             <Target>
               <type value="QUICK_BOOT_TARGET" />

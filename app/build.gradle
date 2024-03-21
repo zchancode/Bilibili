@@ -92,15 +92,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
-    implementation project(path: ':View')
+    implementation project(path: ':zchan_view')
     implementation project(path: ':zchan_player')
     implementation project(path: ':zchan_ffmpegrtmp')
-    implementation project(path: ':zchan_audio')
-    implementation project(path: ':zchan_yuv')
     implementation project(path: ':zchan_opengl')
-    implementation project(path: ':zchan_structure')
-    implementation project(path: ':zchan_x264encoder')
-    implementation project(path: ':zchan_faacencoder')
+    implementation project(path: ':zchan_player_plus')
     implementation project(path: ':zchan_librtmp')
 
 

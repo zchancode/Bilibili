@@ -46,7 +46,7 @@ dependencies {
     implementation "androidx.camera:camera-camera2:${camerax_version}"
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-view:${camerax_version}"
-    implementation project(path: ':View')
+    implementation project(path: ':zchan_view')
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     compileOnly files('libs/opencv-4.5.3.0.aar')

@@ -8,7 +8,9 @@
 
 #define LOGE(FORMAT, ...) __android_log_print(ANDROID_LOG_ERROR,"zchan_librtmp",FORMAT,##__VA_ARGS__)
 #define JNI_FUNC(name) extern "C" JNIEXPORT void JNICALL Java_com_example_zchan_1x264encoder_JniImp_##name
-
+extern "C" {
+#include <libavutil/time.h>
+}
 class X264Encode {
 private:
     x264_param_t param;
@@ -166,9 +168,23 @@ public:
         int pi_nal;//amount of NAL
         x264_picture_t pic_out;
         x264_encoder_encode(videoCodec, &pp_nal, &pi_nal, pic_i420, &pic_out);
-        LOGE("pi_nal:%d", pi_nal);
+        int pps_len, sps_len = 0;
+        uint8_t sps[100];//sps
+        uint8_t pps[100];
         for (int i = 0; i < pi_nal; ++i) {
             x264_nal_t nal = pp_nal[i];
+            if (nal.i_type == NAL_SPS) {
+                sps_len = nal.i_payload - 4;
+                memcpy(sps, nal.p_payload + 4, static_cast<size_t>(sps_len));
+            } else if (nal.i_type == NAL_PPS) {
+                pps_len = nal.i_payload - 4;
+                memcpy(pps, nal.p_payload + 4, static_cast<size_t>(pps_len));
+                RTMPPacket* spsPkt = createSps(sps, pps, sps_len, pps_len);
+                queue->pushPacket(spsPkt);
+            } else {
+                RTMPPacket* framePkt = createFrame(nal.i_type, nal.p_payload, nal.i_payload, av_gettime()/1000);
+                queue->pushPacket(framePkt);
+            }
         }
     }
 
