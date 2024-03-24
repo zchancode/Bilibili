@@ -94,10 +94,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation project(path: ':zchan_view')
     implementation project(path: ':zchan_player')
-    implementation project(path: ':zchan_ffmpegrtmp')
+    implementation project(path: ':zchan_ffrtmp')
     implementation project(path: ':zchan_opengl')
     implementation project(path: ':zchan_player_plus')
     implementation project(path: ':zchan_librtmp')
+    implementation project(path: ':zchan_ffrtmp_plus')
 
 
     testImplementation 'junit:junit:4.13.2'
