@@ -7,6 +7,8 @@
 
 **'zchan_ffrtmp_plus'** - 多文件编程Main.cxx FaacEncoder.cxx X264Encoder.cxx ...实现基于librtmp+faac+libx264的RTMP推流功能  
 
+**'zchan_hardrtmp'** - 使用MediaCodec实现硬编码H264和aac，使用librtmp实现RTMP推流
+
 **'zchan_opengl'** - stb_image.h实现图片加载功能，Main.cxx实现OpenGL渲染功能（画正方形，贴图，旋转）  
 
 **'zchan_player'** - Main.cxx实现基于FFmpeg播放器  

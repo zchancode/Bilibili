@@ -7,5 +7,7 @@ public class JniImp {
         System.loadLibrary("zchan_hardrtmp");
     }
 
-    public native String stringFromJNI();
+    public static native void init(String url);
+    public static native void pushH264(byte[] data, int len, long tms);
+    public static native void pushAAC(byte[] data, int len, long tms);
 }

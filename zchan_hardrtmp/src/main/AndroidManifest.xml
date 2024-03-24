@@ -5,6 +5,9 @@
         <activity
             android:name=".ui.HardActivity"
             android:exported="false" />
+        <service
+            android:name=".service.GameService"
+            android:foregroundServiceType="mediaProjection" />
     </application>
 
 </manifest>
