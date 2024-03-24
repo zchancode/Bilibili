@@ -3,8 +3,15 @@
 
     <application>
         <activity
+            android:name=".ui.GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.FRTMPActivity"
             android:exported="false" />
+
+        <service
+            android:name=".service.GameService"
+            android:foregroundServiceType="mediaProjection" />
     </application>
 
 </manifest>

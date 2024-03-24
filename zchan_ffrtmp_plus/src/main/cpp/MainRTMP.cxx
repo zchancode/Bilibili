@@ -235,3 +235,19 @@ JNI_FUNC(pushI420)(JNIEnv *env, jclass clazz, jbyteArray y,
     env->ReleaseByteArrayElements(v, v_data, 0);
 
 }
+JNI_FUNC(pushRGB)(JNIEnv *env, jclass clazz, jbyteArray data) {
+    if (videoEncoder == NULL) {
+        LOGE("videoEncoder is null")
+        return;
+    }
+    jbyte *rgb_data = env->GetByteArrayElements(data, NULL);
+    int len = env->GetArrayLength(data);
+    Packet pkt;
+    int8_t *rgb = (int8_t *) malloc(len);
+    memcpy(rgb, rgb_data, len);
+    pkt.data[0] = rgb;
+    pkt.pts = av_gettime();
+    pkt.type = 2;//RGB
+    videoEncoder->send(pkt);
+    env->ReleaseByteArrayElements(data, rgb_data, 0);
+}

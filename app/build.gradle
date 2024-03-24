@@ -99,6 +99,7 @@ dependencies {
     implementation project(path: ':zchan_player_plus')
     implementation project(path: ':zchan_librtmp')
     implementation project(path: ':zchan_ffrtmp_plus')
+    implementation project(path: ':zchan_hardrtmp')
 
 
     testImplementation 'junit:junit:4.13.2'

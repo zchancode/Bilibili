@@ -11,7 +11,9 @@ public class JniImp {
 
     public static native void pushNV12(byte[] y, byte[] uv);
     public static native void pushI420(byte[] y, byte[] u, byte[] v);
+    public static native void pushRGB(byte[] data);
     public static native void pushPCM(byte[] data);
+
 
     public static native void startFRtmp();
 
