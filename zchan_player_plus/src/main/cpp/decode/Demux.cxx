@@ -21,7 +21,7 @@ private:
         return r.num == 0 || r.den == 0 ? 0. : (double) r.num / (double) r.den;
     }
 
-    AVFormatContext *avFormatContext = nullptr;
+    AVFormatContext *avFormatContext = 0;
     int64_t totalMs = 0;
     bool isRunning = true;
     bool isExit = false;
@@ -46,7 +46,7 @@ private:
 public:
     Demux(std::string url) {
         av_register_all();
-        avcodec_register_all();
+//        avcodec_register_all();
         avformat_network_init();
         avformat_open_input(&avFormatContext, url.c_str(), 0, 0);//open mp4 file
         avformat_find_stream_info(avFormatContext,

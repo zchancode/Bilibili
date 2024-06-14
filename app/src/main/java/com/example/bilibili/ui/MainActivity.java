@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         popupView.findViewById(com.example.view.R.id.btn_librtmp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FRTMPActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.example.zchan_player_annotating.ui.PlayerActivity.class);
                 popupWindow.dismiss();
                 startActivity(intent);
             }

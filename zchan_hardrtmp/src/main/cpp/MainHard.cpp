@@ -10,28 +10,27 @@ extern "C" {
 #define LOGE(FORMAT, ...) __android_log_print(ANDROID_LOG_ERROR,"zchan_hardrtmp",FORMAT,##__VA_ARGS__)
 RTMP *rtmp = nullptr;
 
-struct SpsPps {
-    int sps_len;
-    int pps_len;
-    int8_t *sps;
-    int8_t *pps;
-};
+int sps_len = 0;
+int pps_len = 0;
+int8_t *sps = nullptr;
+int8_t *pps = nullptr;
+std::string rUrl;
 
-SpsPps *live = new SpsPps();
 
-void saveSpsPps(int8_t *data, int len, SpsPps *live) {
+
+void saveSpsPps(int8_t *data, int len) {
     for (int i = 0; i < len; i++) {
         if (i + 4 < len) {
             if (data[i] == 0x00 && data[i + 1] == 0x00
                 && data[i + 2] == 0x00
                 && data[i + 3] == 0x01) {
                 if (data[i + 4] == 0x68) {
-                    live->sps_len = i - 4;
-                    live->sps = static_cast<int8_t *>(malloc(live->sps_len));
-                    memcpy(live->sps, data + 4, live->sps_len);
-                    live->pps_len = len - (4 + live->sps_len) - 4;
-                    live->pps = static_cast<int8_t *>(malloc(live->pps_len));
-                    memcpy(live->pps, data + 4 + live->sps_len + 4, live->pps_len);
+                    sps_len = i - 4;
+                    sps = static_cast<int8_t *>(malloc(sps_len));
+                    memcpy(sps, data + 4, sps_len);
+                    pps_len = len - (4 + sps_len) - 4;
+                    pps = static_cast<int8_t *>(malloc(pps_len));
+                    memcpy(pps, data + 4 + sps_len + 4, pps_len);
                     break;
                 }
             }
@@ -152,17 +151,17 @@ void sendPacket(RTMPPacket *packet) {
         RTMP_Close(rtmp);
         RTMP_Free(rtmp);
         LOGE("send packet failed");
-        connectRTMP("rtmp://139.224.68.119:1935/rtmplive_demo/hls");//reconnect
+        connectRTMP(rUrl.c_str());//reconnect
     }
 }
 
 void sendVideo(int8_t *buf, int len, long tms) {
     if (buf[4] == 0x67) {//sps pps
-        saveSpsPps(buf, len, live);
+        saveSpsPps(buf, len);
     } else {//I and P frames
         if (buf[4] == 0x65) { //if it is I frame then send sps pps
-            RTMPPacket *packet = createSpsPackage((uint8_t *) live->sps, (uint8_t *) live->pps,
-                                                  live->sps_len, live->pps_len);
+            RTMPPacket *packet = createSpsPackage((uint8_t *) sps, (uint8_t *) pps,
+                                                  sps_len, pps_len);
             sendPacket(packet);
         }
         RTMPPacket *packet = createVideoPackage(buf, len, tms);
@@ -180,6 +179,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_zchan_1hardrtmp_JniImp_init(JNIEnv *env, jclass thiz, jstring url) {
     const char *rtmpUrl = env->GetStringUTFChars(url, nullptr);
+    rUrl = std::string(rtmpUrl);
     connectRTMP(rtmpUrl);
     env->ReleaseStringUTFChars(url, rtmpUrl);
 }

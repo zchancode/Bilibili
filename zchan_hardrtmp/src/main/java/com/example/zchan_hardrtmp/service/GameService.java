@@ -33,7 +33,6 @@ import androidx.annotation.RequiresApi;
 
 
 import com.example.zchan_hardrtmp.JniImp;
-import com.example.zchan_hardrtmp.RTMPPackage;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -185,6 +184,7 @@ public class GameService extends Service {
         format.setInteger(MediaFormat.KEY_BIT_RATE, 1024000000);
         format.setInteger(MediaFormat.KEY_FRAME_RATE, 15);
         format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1);
+        //setting level to high
         try {
             videoCodec = MediaCodec.createEncoderByType("video/avc");
             videoCodec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
