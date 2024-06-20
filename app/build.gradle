@@ -68,8 +68,12 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true //有viewBinding的功能 还要改xml文件 mvvm一定要用viewBinding
     }
     ndkVersion '19.2.5345600'
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -115,6 +119,8 @@ dependencies {
     implementation project(path: ':zchan_player_annotating')
     implementation project(path: ':zchan_player_handwrite')
     implementation 'androidx.annotation:annotation:1.6.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
 
 
     testImplementation 'junit:junit:4.13.2'

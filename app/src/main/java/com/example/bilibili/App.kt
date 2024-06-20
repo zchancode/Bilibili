@@ -1,8 +1,6 @@
 package com.example.bilibili
 
 import android.app.Application
-import android.content.Intent
-import com.zchan.login.view.LoginActivity
 
 /**
 Created by Mr.Chan
