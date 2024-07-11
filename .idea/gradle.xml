@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/loadsir" />
             <option value="$PROJECT_DIR$/zchan_audio" />
             <option value="$PROJECT_DIR$/zchan_dark" />
             <option value="$PROJECT_DIR$/zchan_faacencoder" />
@@ -26,6 +27,7 @@
             <option value="$PROJECT_DIR$/zchan_player_plus" />
             <option value="$PROJECT_DIR$/zchan_player_rtsp" />
             <option value="$PROJECT_DIR$/zchan_view" />
+            <option value="$PROJECT_DIR$/zchan_webview" />
             <option value="$PROJECT_DIR$/zchan_x264encoder" />
             <option value="$PROJECT_DIR$/zchan_yuv" />
           </set>

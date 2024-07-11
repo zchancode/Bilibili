@@ -1,4 +1,4 @@
-package com.mvp.news.view;
+package com.java;
 
 import java.util.ArrayList;
 

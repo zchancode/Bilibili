@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.mvp.binance.splash.view.base.BaseFragment
+import com.mvp.binance.splash.view.base.LazyBaseFragment
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -15,7 +16,7 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function
 
-class MeFragment : BaseFragment(), View.OnClickListener {
+class MeFragment : LazyBaseFragment(), View.OnClickListener {
     override fun getLayoutId(): Int {
         return R.layout.mvp_binance_fragment_me
     }

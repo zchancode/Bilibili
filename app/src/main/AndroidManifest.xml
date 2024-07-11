@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        android:name=".App"
+        android:name="com.example.App"
         android:allowAudioPlaybackCapture="true"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,11 +23,19 @@
         android:theme="@style/Theme.Splash"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name="com.okhttp.learn.OkHttpActivity"
+            android:name="com.rxjava.learn.RXActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.java.pattern.DesignActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.java.string.StringActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.md.design.LayoutActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

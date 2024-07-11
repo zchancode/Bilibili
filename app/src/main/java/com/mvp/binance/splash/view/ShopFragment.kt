@@ -11,11 +11,12 @@ import com.mvp.binance.splash.model.bean.ProjectBean
 import com.mvp.binance.splash.present.ISplashPresent
 import com.mvp.binance.splash.present.SplashPresent
 import com.mvp.binance.splash.view.base.BaseFragment
+import com.mvp.binance.splash.view.base.LazyBaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 
 
-class ShopFragment : BaseFragment(), View.OnClickListener, ISplashView {
+class ShopFragment : LazyBaseFragment(), View.OnClickListener, ISplashView {
     lateinit var processDialog: ProgressDialog
 
     override fun getLayoutId(): Int {

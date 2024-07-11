@@ -8,8 +8,9 @@ import android.widget.TextView
 import com.example.bilibili.R
 
 import com.mvp.binance.splash.view.base.BaseFragment
+import com.mvp.binance.splash.view.base.LazyBaseFragment
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : LazyBaseFragment() {
 
     class Person {
         val name: String = "zhangsan"
