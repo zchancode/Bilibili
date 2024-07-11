@@ -22,6 +22,8 @@ public class LiveActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private PlayerSurface mPlayerSurface;
 
+
+
     private String url;
     private Thread mThread = new Thread(new Runnable() {
         @Override

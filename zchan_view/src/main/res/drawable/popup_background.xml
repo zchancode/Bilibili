@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- popup_background.xml in drawable folder -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+            <padding android:bottom="2dp" />
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/short_line" android:gravity="center_horizontal|bottom"/>
+</layer-list>

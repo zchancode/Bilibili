@@ -23,5 +23,6 @@ public class IntroduceActivity extends Fragment {
             root = inflater.inflate(R.layout.activity_introduce, container, false);
         }
         return root;
+
     }
 }

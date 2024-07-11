@@ -1,0 +1,95 @@
+//
+// Created by Administrator on 2024-03-26.
+//
+#pragma once
+extern "C" {
+#include "libavformat/avformat.h"
+#include "libavutil/time.h"
+}
+
+#include "FFObserver.cxx"
+#include <queue>
+#include <mutex>
+#include <thread>
+#include <android/log.h>
+#define LOGE(FORMAT, ...) __android_log_print(ANDROID_LOG_ERROR,"zchan_player_annotating",FORMAT,##__VA_ARGS__)
+class FFVideoDecode : public FFObserver {
+private:
+    int streamIndex = -1;
+    std::mutex mutex;
+    std::queue<FFData> queue;
+    AVCodecContext *codecContext = nullptr;
+    bool isRunning = true;
+    bool isExit = false;
+
+    void mainThread() {
+        while (isRunning) {
+            if (queue.empty()) {
+                av_usleep(1);
+                continue;
+            }
+            mutex.lock();
+            FFData data = queue.front();
+            queue.pop();
+            mutex.unlock();
+            AVPacket *packet = (AVPacket *) data.p[0];
+            avcodec_send_packet(codecContext, packet);
+            av_packet_free(&packet);
+            while (true) {
+                AVFrame *frame = av_frame_alloc();
+                int re = avcodec_receive_frame(codecContext, frame);
+                if (re != 0) break;
+                FFData d;
+                d.p[0] = frame;
+                send(d);
+            }
+
+        }
+        isExit = true;
+    }
+
+public:
+    FFVideoDecode(AVFormatContext *avFormatContext) {
+        streamIndex = av_find_best_stream(avFormatContext, AVMEDIA_TYPE_VIDEO, -1, -1, 0, 0);
+        AVCodecParameters *codecParameters = avFormatContext->streams[streamIndex]->codecpar;
+        AVCodec *codec = avcodec_find_decoder(codecParameters->codec_id);
+        codecContext = avcodec_alloc_context3(codec);
+        avcodec_parameters_to_context(codecContext, codecParameters);
+        avcodec_open2(codecContext, codec, nullptr);
+    }
+
+    ~FFVideoDecode() {
+        isRunning = false;
+        while (!isExit) {
+            av_usleep(1);
+        }
+        LOGE("~FFVideoDecode()");
+        avcodec_close(codecContext);
+        avcodec_free_context(&codecContext);
+        while (queue.size() > 0) {
+            LOGE("FFVideoDecode queue size %d", queue.size());
+            FFData data = queue.front();
+            queue.pop();
+            AVPacket *packet = (AVPacket *) data.p[0];
+            av_packet_free(&packet);
+        }
+        isRunning = true;
+        isExit = false;
+    }
+
+    void receive(FFData data) override {
+        if (data.dataType != streamIndex) return;
+        while (queue.size() > 100) {
+            av_usleep(1);
+        }
+        mutex.lock();
+        queue.push(data);
+        mutex.unlock();
+
+    }
+
+    void start() {
+        std::thread t(&FFVideoDecode::mainThread, this);
+        t.detach();
+    }
+};

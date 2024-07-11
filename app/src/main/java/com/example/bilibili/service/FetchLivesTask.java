@@ -14,7 +14,7 @@ public class FetchLivesTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
         try {
-            FetchLivesService service = new FetchLivesService();
+            LivesService service = new LivesService();
             return service.getLives(urls[0]);
         } catch (IOException e) {
             Log.e("FetchLivesTask", "Error fetching lives", e);
