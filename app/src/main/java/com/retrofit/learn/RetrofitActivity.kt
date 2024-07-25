@@ -17,7 +17,8 @@ class RetrofitActivity : AppCompatActivity() {
 
         //构建一个 Retrofit 对象
         val retrofit = NetUtil.getNetApi()
-        retrofit.create(NetApi::class.java).getNews().subscribeOn(Schedulers.io())
+        retrofit.create(NetApi::class.java).getNews()
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<NewsRespond> {
                 override fun onComplete() {
@@ -27,14 +28,13 @@ class RetrofitActivity : AppCompatActivity() {
                 }
 
                 override fun onNext(t: NewsRespond) {
-                    println(t)
+                    //请求成功
                 }
 
                 override fun onError(e: Throwable) {
+                    //请求失败
                 }
-            }
-        )
-
+            })
 
 
     }

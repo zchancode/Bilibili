@@ -113,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeFragment(Fragment fragment) {
-        FragmentManager FRAGMENT_MANAGER = getSupportFragmentManager();
-        FragmentTransaction TRANSACTION = FRAGMENT_MANAGER.beginTransaction();
-        TRANSACTION.replace(R.id.fragmentView, fragment);
-        TRANSACTION.commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentView, fragment);
+        transaction.commit();
     }
 
 }
