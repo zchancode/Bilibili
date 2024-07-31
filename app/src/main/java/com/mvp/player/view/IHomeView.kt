@@ -7,7 +7,7 @@ Blog https://www.cnblogs.com/Frank-dev-blog/
  */
 interface IHomeView {
 
-    fun showCommentDialog()
+    fun showCommentDialog();
 
     fun closeCommentDialog()
 }
