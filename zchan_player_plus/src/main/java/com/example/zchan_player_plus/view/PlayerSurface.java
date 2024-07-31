@@ -15,12 +15,15 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class PlayerSurface extends GLSurfaceView implements SurfaceHolder.Callback, GLSurfaceView.Renderer {
     private OnSurfaceListener onSurfaceListener;
+
     public void setOnSurfaceListener(OnSurfaceListener onSurfaceListener) {
         this.onSurfaceListener = onSurfaceListener;
     }
+
     public interface OnSurfaceListener {
         void onSurfaceCreated(SurfaceHolder holder);
     }
+
     public PlayerSurface(Context context, AttributeSet attrs) {
         super(context, attrs);
         setRenderer(this);

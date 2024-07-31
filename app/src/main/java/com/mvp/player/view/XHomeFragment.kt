@@ -2,6 +2,7 @@ package com.mvp.player.view
 
 import android.app.Dialog
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -20,9 +21,11 @@ Created by Mr.Chan
 Time 2024-07-27
 Blog https://www.cnblogs.com/Frank-dev-blog/
  */
-class XHomeFragment : XBaseFragment(), IPlayerView {
+class XHomeFragment : XBaseFragment(), IPlayerView, IHomeView {
 
     private lateinit var dialog: BottomSheetDialog
+    private lateinit var commentDialog: BottomSheetDialog
+
     private lateinit var videoListView: RecyclerView
     private val present: IPlayerPresent = PlayerPresent(this)
     override fun getLayoutId(): Int {
@@ -31,15 +34,15 @@ class XHomeFragment : XBaseFragment(), IPlayerView {
 
 
     override fun initView(view: View) {
-        videoListView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        videoListView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(requireContext(), 2)
-        present.getVideoList()
-
+        val commentBtn = view.findViewById<ImageView>(R.id.comment_btn)
+        commentBtn.setOnClickListener{
+            showCommentDialog()
+        }
     }
+
 
     override fun showLoading() {
         dialog = BottomSheetDialog(requireContext())
-        dialog.setTitle("Loading")
         dialog.setContentView(ProgressBar(requireContext()))
         dialog.show()
     }
@@ -50,7 +53,8 @@ class XHomeFragment : XBaseFragment(), IPlayerView {
 
     override fun showVideoList(videoList: List<Video>) {
         dialog.dismiss()
-        Toast.makeText(requireContext(), "showVideoList ${videoList.size}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "showVideoList ${videoList.size}", Toast.LENGTH_SHORT)
+            .show()
         videoListView.adapter = XVideoListAdapter(requireContext(), videoList)
     }
 
@@ -58,5 +62,15 @@ class XHomeFragment : XBaseFragment(), IPlayerView {
         dialog.dismiss()
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
+    }
+
+    override fun showCommentDialog() {
+        commentDialog = BottomSheetDialog(requireContext())
+        commentDialog.setContentView(R.layout.x_player_fragment_home_comment)
+        commentDialog.show()
+    }
+
+    override fun closeCommentDialog() {
+        commentDialog.dismiss()
     }
 }

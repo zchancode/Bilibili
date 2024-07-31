@@ -13,16 +13,137 @@
         android:layout_height="0dp"
         android:id="@+id/view_pager"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"/>
+        app:layout_constraintBottom_toTopOf="@id/nav_bar"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/video_player_bottom_navigation_menu"
+        android:layout_height="47.67dp"
+        android:background="#262626"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/home"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="28dp"
+            android:layout_height="37.5dp"
+            android:layout_marginLeft="27.5dp"
+            android:layout_marginTop="6.7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+            
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="21dp"
+                android:background="@drawable/home"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="40dp"
+            android:layout_height="37.5dp"
+            android:layout_marginLeft="104.5dp"
+            android:layout_marginTop="6.7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+            
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="21dp"
+                android:background="@drawable/search"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/add"
+            android:layout_width="43dp"
+            android:layout_height="28dp"
+
+            android:layout_marginLeft="185.5dp"
+            android:layout_marginTop="8.17dp"
+            android:background="@drawable/add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/inbox"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="25dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="277.5dp"
+            android:layout_marginTop="6.7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="21dp"
+                android:background="@drawable/msg"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inbox"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/me"
+            android:layout_width="18dp"
+            android:layout_height="38dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginLeft="363.5dp"
+            android:layout_marginTop="6.7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="21dp"
+                android:background="@drawable/me"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Me"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

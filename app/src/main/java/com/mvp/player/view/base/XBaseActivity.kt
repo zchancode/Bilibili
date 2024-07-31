@@ -20,7 +20,7 @@ abstract class XBaseActivity: AppCompatActivity() {
 
     private fun setCustomDensity() {
         val appDisplayMetrics = resources.displayMetrics
-        val targetDensity = appDisplayMetrics.widthPixels / 360f
+        val targetDensity = appDisplayMetrics.widthPixels / 414f
         val targetScaledDensity = targetDensity * (resources.displayMetrics.scaledDensity / resources.displayMetrics.density)
         val targetDensityDpi = (160 * targetDensity).toInt()
         appDisplayMetrics.density = targetDensity

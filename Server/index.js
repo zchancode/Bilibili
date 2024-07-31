@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//static
+app.use(express.static('public'));
+
 //cors
 const cors = require('cors');
 app.use(cors());
@@ -27,6 +30,7 @@ app.get('/video', (req, res) => {
     videoList.push(new Video("Video 3", "https://www.youtube.com/embed/3"));
     res.json(videoList);
 });
+
 
 
 app.listen(3000, () => {

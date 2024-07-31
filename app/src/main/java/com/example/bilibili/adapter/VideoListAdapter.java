@@ -19,7 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bilibili.bean.LiveRoom;
 import com.example.utils.SizeUtils;
-import com.example.zchan_player.LiveActivity;
+//import com.example.zchan_player.LiveActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -145,9 +145,9 @@ public class VideoListAdapter extends RecyclerView.Adapter {
             videoHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, LiveActivity.class);
-                    intent.putExtra("url", roomList.get(position - 1).getRoomUrl());
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, LiveActivity.class);
+//                    intent.putExtra("url", roomList.get(position - 1).getRoomUrl());
+//                    context.startActivity(intent);
                 }
             });
         }

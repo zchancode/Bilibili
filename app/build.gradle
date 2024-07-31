@@ -110,17 +110,23 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+
     implementation project(path: ':zchan_view')
-    implementation project(path: ':zchan_player')
-    implementation project(path: ':zchan_ffrtmp')
-    implementation project(path: ':zchan_opengl')
-    implementation project(path: ':zchan_player_plus')
-    implementation project(path: ':zchan_librtmp')
-    implementation project(path: ':zchan_ffrtmp_plus')
-    implementation project(path: ':zchan_hardrtmp')
-    implementation project(path: ':zchan_player_annotating')
-    implementation project(path: ':zchan_player_handwrite')
+    implementation project(path: ':playerCore')
+
+//    implementation project(path: ':zchan_player')
+//    implementation project(path: ':zchan_ffrtmp')
+//    implementation project(path: ':zchan_opengl')
+//    implementation project(path: ':zchan_player_plus')
+//    implementation project(path: ':zchan_librtmp')
+//    implementation project(path: ':zchan_ffrtmp_plus')
+//    implementation project(path: ':zchan_hardrtmp')
+//    implementation project(path: ':zchan_player_annotating')
+//    implementation project(path: ':zchan_player_handwrite')
     implementation project(path: ':zchan_webview')
+
+
     implementation 'androidx.annotation:annotation:1.6.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
