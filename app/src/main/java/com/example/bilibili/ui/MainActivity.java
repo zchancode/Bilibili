@@ -18,11 +18,9 @@ import android.widget.PopupWindow;
 import com.example.bilibili.R;
 import com.example.bilibili.databinding.ActivityMainBinding;
 import com.example.viewgroup.MainBottomBar;
-import com.example.zchan_ffrtmp_plus.ui.FRTMPActivity;
-import com.example.zchan_librtmp.ui.GameRtmpActivity;
-import com.example.zchan_librtmp.ui.LibRTMPActivity;
-import com.example.zchan_rtmp.CameraXActivity;
-import com.example.zchan_rtmp.ScreenActivity;
+//import com.example.zchan_ffrtmp_plus.ui.FRTMPActivity;
+//import com.example.zchan_librtmp.ui.GameRtmpActivity;
+//import com.example.zchan_librtmp.ui.LibRTMPActivity;
 //import com.example.zchan_rtmp.ScreenActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -97,26 +95,26 @@ public class MainActivity extends AppCompatActivity {
         popupView.findViewById(com.example.view.R.id.btn_librtmp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.example.zchan_player_annotating.ui.PlayerActivity.class);
-                popupWindow.dismiss();
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, com.example.zchan_player_annotating.ui.PlayerActivity.class);
+//                popupWindow.dismiss();
+//                startActivity(intent);
             }
         });
         popupView.findViewById(com.example.view.R.id.btn_ffmpeg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScreenActivity.class);
-                popupWindow.dismiss();
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, ScreenActivity.class);
+//                popupWindow.dismiss();
+//                startActivity(intent);
             }
         });
     }
 
     private void changeFragment(Fragment fragment) {
-        FragmentManager FRAGMENT_MANAGER = getSupportFragmentManager();
-        FragmentTransaction TRANSACTION = FRAGMENT_MANAGER.beginTransaction();
-        TRANSACTION.replace(R.id.fragmentView, fragment);
-        TRANSACTION.commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentView, fragment);
+        transaction.commit();
     }
 
 }

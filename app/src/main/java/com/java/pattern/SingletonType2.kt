@@ -5,11 +5,11 @@ Created by Mr.Chan
 Time 2024-06-28
 Blog https://www.cnblogs.com/Frank-dev-blog/
  */
-class SingletonType2 {
+class SingletonType2 private constructor() {
     companion object{
-        private var instance: SingletonType2 = SingletonType2()
+        private var instance: SingletonType2? = null
         fun getInstance(): SingletonType2 {
-            return instance
+            return instance?: SingletonType2()
         }
     }
 }

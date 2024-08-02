@@ -7,10 +7,9 @@ Blog https://www.cnblogs.com/Frank-dev-blog/
  */
 
 object SingletonType1 {
-//饿汉式
-    private var instance: SingletonType1? = null
-    fun getInstance(): SingletonType1 {
-        return instance ?: SingletonType1
+//饿汉式 直接拿来用
+    fun doSomething() {
+        println("SingletonType1 doSomething")
     }
 
 }
