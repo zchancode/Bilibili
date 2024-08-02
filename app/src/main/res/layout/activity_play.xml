@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.mvp.player.view.PlayActivity">
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2Looper"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

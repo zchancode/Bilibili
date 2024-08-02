@@ -8,8 +8,7 @@ import com.example.bilibili.databinding.XactivityPlayerMainBinding
 import com.mvp.player.view.adapter.XViewPagerAdapter
 import com.mvp.player.view.base.XBaseActivity
 
-class XPlayerMainActivity : XBaseActivity() {
-
+class XMainActivity : XBaseActivity() {
 
     private lateinit var binding: XactivityPlayerMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,27 +16,17 @@ class XPlayerMainActivity : XBaseActivity() {
         binding = XactivityPlayerMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
-
     }
 
     fun initView() {
         val viewPager2 = binding.viewPager
-        val bottomNavigationView = binding.navBar
-        val fragments = listOf(
-            XHomeFragment(),
-            XSearchFragment(),
-            XInboxFragment(),
-            XMeFragment()
-        )
 
-        val adapter = XViewPagerAdapter(this, fragments)
+
+        val adapter = XViewPagerAdapter(this)
         viewPager2.adapter = adapter
+        viewPager2.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
 
-            }
-        })
 
         val buttonClickListener = View.OnClickListener { view ->
             when (view.id) {
