@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.bilibili.R
-import com.mvp.player.model.bean.Video
 import com.mvp.player.view.XVideoFragment
 import java.util.zip.Inflater
 

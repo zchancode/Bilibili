@@ -1,7 +1,12 @@
 package com.mvp.player.view
 
+import android.app.ProgressDialog
+import android.util.Log
 import android.view.View
 import com.example.bilibili.R
+import com.mvp.player.App
+import com.mvp.player.model.GetUserInfoResponse
+import com.mvp.player.model.UserModel
 import com.mvp.player.view.adapter.XMeAdapter
 import com.mvp.player.view.base.XBaseFragment
 
@@ -10,13 +15,18 @@ Created by Mr.Chan
 Time 2024-07-27
 Blog https://www.cnblogs.com/Frank-dev-blog/
  */
-class XMeFragment: XBaseFragment() {
+class XMeFragment : XBaseFragment(), IUserView {
     override fun getLayoutId(): Int {
         return R.layout.x_player_fragment_setting
     }
 
+
+    private lateinit var dialog: ProgressDialog
+    private lateinit var root: View
     override fun initView(view: View) {
-        val tabView = view.findViewById<com.google.android.material.tabs.TabLayout>(R.id.me_tab_layout)
+        root = view
+        val tabView =
+            view.findViewById<com.google.android.material.tabs.TabLayout>(R.id.me_tab_layout)
         val tab1 = tabView.newTab()
         val ta1View = layoutInflater.inflate(R.layout.custom_tab_icon, null)
         val ta1Img = ta1View.findViewById<android.widget.ImageView>(R.id.tab_icon)
@@ -32,8 +42,8 @@ class XMeFragment: XBaseFragment() {
         tabView.addTab(tab2)
 
 
-
-        val recyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.me_recycler_view)
+        val recyclerView =
+            view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.me_recycler_view)
         recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 3)
 
         //create colorful bitmap
@@ -50,6 +60,27 @@ class XMeFragment: XBaseFragment() {
         list.add(bitmap4)
         recyclerView.adapter = XMeAdapter(list)
 
+        val userPresenter = com.mvp.player.present.UserPresent(this)
+        userPresenter.getUserInfo(App.instance.token ?: "")
 
+
+    }
+
+    override fun onResult(result: Any) {
+        val user = result as GetUserInfoResponse
+        if (user.success) {
+            root.findViewById<android.widget.TextView>(R.id.username).text = user.data.username
+        }
+        Log.d("XMeFragment", "onResult: $result")
+    }
+
+    override fun showLoading() {
+        dialog = ProgressDialog(context)
+        dialog.setTitle("加载中")
+        dialog.show()
+    }
+
+    override fun hideLoading() {
+        dialog.dismiss()
     }
 }

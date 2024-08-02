@@ -14,9 +14,6 @@ import com.example.bilibili.R
 import com.example.playercore.PlayInterface
 import com.example.playercore.PlayerSurface
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.mvp.player.model.bean.Video
-import com.mvp.player.present.IPlayerPresent
-import com.mvp.player.present.PlayerPresent
 import com.mvp.player.view.adapter.XHomeCommentAdapter
 import com.mvp.player.view.adapter.XVideoListAdapter
 import com.mvp.player.view.base.XBaseFragment
