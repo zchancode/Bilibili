@@ -23,14 +23,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <activity android:name="com.mvp.player.view.CameraXActivity"/>
         <activity
-            android:name="com.mvp.player.view.XMainActivity"
+            android:name="com.mvp.player.view.FindActivity"
             android:exported="false" />
         <activity
             android:name="com.mvp.player.view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.mvp.player.view.RegisterActivity"
+            android:name="com.mvp.player.view.XMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

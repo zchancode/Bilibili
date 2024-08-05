@@ -79,7 +79,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:id="@+id/add"
+            android:id="@+id/cameraxShow"
             android:layout_width="43dp"
             android:layout_height="28dp"
 

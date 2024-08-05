@@ -1,10 +1,12 @@
 package com.mvp.player.view
 
 import android.app.Dialog
+import android.content.Intent
 import android.service.media.MediaBrowserService.BrowserRoot
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +45,8 @@ class XHomeFragment : XBaseFragment() {
         videoListView.adapter = XVideoListAdapter(this)
         videoListView.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
         videoListView.orientation = ViewPager2.ORIENTATION_VERTICAL
+
+
 
 
     }

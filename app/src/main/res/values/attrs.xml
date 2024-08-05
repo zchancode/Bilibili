@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SettingItemViewAttrs">
+        <attr name="leftText" format="string"/>
+        <attr name="leftTextVisible" format="boolean"/>
+        <attr name="rightText" format="string"/>
+        <attr name="rightTextVisible" format="boolean"/>
+        <attr name="rightIcon" format="reference"/>
+        <attr name="rightIconVisible" format="boolean"/>
+
+
+    </declare-styleable>
+
+</resources>

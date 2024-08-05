@@ -1,6 +1,7 @@
 package com.mvp.player.view
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import com.example.bilibili.R
@@ -60,6 +61,11 @@ class XMeFragment : XBaseFragment(), IUserView {
         list.add(bitmap4)
         recyclerView.adapter = XMeAdapter(list)
 
+
+        val editProfile = view.findViewById<android.widget.TextView>(R.id.editProfile)
+        editProfile.setOnClickListener {
+            startActivity(Intent(context, ProfileActivity::class.java))
+        }
         val userPresenter = com.mvp.player.present.UserPresent(this)
         userPresenter.getUserInfo(App.instance.token ?: "")
 

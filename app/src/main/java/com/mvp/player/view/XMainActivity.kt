@@ -1,5 +1,6 @@
 package com.mvp.player.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
@@ -38,6 +39,10 @@ class XMainActivity : XBaseActivity() {
                     viewPager2.currentItem = 1
                 }
 
+                R.id.cameraxShow -> {
+                    startActivity(Intent(this, CameraXActivity::class.java))
+                }
+
                 R.id.inbox -> {
                     viewPager2.currentItem = 2
                 }
@@ -51,7 +56,7 @@ class XMainActivity : XBaseActivity() {
 
         binding.home.setOnClickListener(buttonClickListener)
         binding.search.setOnClickListener(buttonClickListener)
-        binding.add.setOnClickListener(buttonClickListener)
+        binding.cameraxShow.setOnClickListener(buttonClickListener)
         binding.inbox.setOnClickListener(buttonClickListener)
         binding.me.setOnClickListener(buttonClickListener)
 
