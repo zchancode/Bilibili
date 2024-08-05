@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mvp.player.view.CameraXActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/timeConstraintLayout">
+
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/camerax_close"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="176dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="35dp"
+            android:layout_width="14dp"
+            android:layout_height="13dp"
+            android:background="@drawable/camerax_music"/>
+        
+        <TextView
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="195dp"
+            android:layout_marginTop="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#fff"
+            android:text="Sounds"/>
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="37dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="27dp"
+            android:layout_height="22dp"
+            android:background="@drawable/camerax_flip2"/>
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="37dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="27dp"
+            android:layout_height="22dp"
+            android:background="@drawable/camerax_flip2"/>
+
+        <TextView
+            android:text="Flip"
+            android:textSize="10sp"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="67dp"
+            android:layout_marginLeft="378dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="99dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/camerax_speed"/>
+
+
+        <TextView
+            android:textSize="10sp"
+            android:text="Speed"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="129dp"
+            android:layout_marginLeft="372dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="161dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="25dp"
+            android:layout_height="24dp"
+            android:background="@drawable/camerax_beauty"/>
+
+        <TextView
+            android:textSize="10sp"
+            android:text="Beauty"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="191dp"
+            android:layout_marginLeft="370dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="224dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
+            android:background="@drawable/camerax_filters"/>
+
+
+        <TextView
+            android:textSize="10sp"
+            android:text="Filters"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="253dp"
+            android:layout_marginLeft="372dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="286dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="23dp"
+            android:layout_height="24dp"
+            android:background="@drawable/camerax_timers"/>
+
+        <TextView
+            android:textSize="10sp"
+            android:text="Timer"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="316dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="348dp"
+            android:layout_marginLeft="373dp"
+            android:layout_width="19dp"
+            android:layout_height="24dp"
+            android:background="@drawable/camerax_flash"/>
+
+        <TextView
+            android:textSize="10sp"
+            android:text="Flash"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="378dp"
+            android:layout_marginLeft="374dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        
+        <ImageView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="67dp"
+            android:layout_marginBottom="54dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/effects"/>
+
+        <TextView
+            android:textSize="11sp"
+            android:textColor="#fff"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:layout_marginBottom="36dp"
+            android:layout_marginLeft="66dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Effects"/>
+
+        <ImageView
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="167dp"
+            android:layout_marginBottom="33dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/camerax_record_btn"/>
+        
+        <ImageView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="315dp"
+            android:layout_marginBottom="57dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/camerax_pic"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="11sp"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="313dp"
+            android:layout_marginBottom="38dp"
+            android:layout_height="wrap_content"
+            android:text="Upload"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timeConstraintLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#000"
+        android:layout_width="match_parent"
+        android:layout_height="67dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="60s"
+            android:layout_marginRight="30dp"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView24"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="15s"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="Templates"
+            android:textColor="#fff"
+            android:layout_marginLeft="30dp"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView24"
+            app:layout_constraintTop_toTopOf="parent" />
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
