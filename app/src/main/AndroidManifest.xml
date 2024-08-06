@@ -23,6 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <activity android:name="com.mvp.player.view.ProfileActivity"/>
         <activity android:name="com.mvp.player.view.CameraXActivity"/>
         <activity
             android:name="com.mvp.player.view.FindActivity"
