@@ -1,20 +1,413 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-    <TextView
-        android:textSize="40sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="343dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/search_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/search_ico"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/search_left_ico"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.mvp.player.view.custom.FlowLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="0dp"
+
+            app:layout_constraintBottom_toTopOf="@+id/textView25"
+            app:layout_constraintTop_toBottomOf="@+id/editText3">
+
+           <LinearLayout
+               android:gravity="center"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:layout_margin="4dp"
+                   android:textSize="14sp"
+                   android:paddingLeft="4dp"
+                   android:paddingRight="4dp"
+                   android:paddingTop="2dp"
+                   android:paddingBottom="2dp"
+                   android:gravity="center"
+                   android:textColor="#fff"
+                   android:text="丁真"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/search_bg" />
+
+           </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="你是那个生的？"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="妈妈生的"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="一眼丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="鉴定为：假"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="我喜欢锐刻五代"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真代言"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="你是那个生的？"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:text="丁真："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bg" />
+
+            </LinearLayout>
+
+        </com.mvp.player.view.custom.FlowLayout>
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="279dp"
+            android:text="Trending hashtag"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/recycler_view"
+            android:layout_marginTop="320dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
