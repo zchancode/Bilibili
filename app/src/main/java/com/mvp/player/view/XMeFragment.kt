@@ -67,7 +67,13 @@ class XMeFragment : XBaseFragment(), IUserView {
             startActivity(Intent(context, ProfileActivity::class.java))
         }
         val userPresenter = com.mvp.player.present.UserPresent(this)
-        userPresenter.getUserInfo(App.instance.token ?: "")
+        userPresenter.getUserInfo()
+
+
+        val addFriend = view.findViewById<android.widget.ImageView>(R.id.addFriend)
+        addFriend.setOnClickListener {
+            startActivity(Intent(context, FindActivity::class.java))
+        }
 
 
     }

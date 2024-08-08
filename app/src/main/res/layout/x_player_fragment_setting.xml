@@ -16,7 +16,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/addFriend"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginLeft="17dp"

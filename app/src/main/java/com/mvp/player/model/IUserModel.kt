@@ -10,5 +10,5 @@ interface IUserModel {
 
     fun register(username: String, email: String, password: String, callBack: (RegisterResponse) -> Unit)
 
-    fun getUserInfo(token: String, callBack: (GetUserInfoResponse) -> Unit)
+    fun getUserInfo(callBack: (GetUserInfoResponse) -> Unit)
 }

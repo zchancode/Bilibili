@@ -10,6 +10,6 @@ interface IUserPresent {
 
     fun register(username: String, email: String, password: String)
 
-    fun getUserInfo(token: String)
+    fun getUserInfo()
 
 }

@@ -6,30 +6,11 @@ plugins {
 android {
     compileSdk 33
     packagingOptions {
-        pickFirst 'jniLibs/armeabi-v7a/libopencv_java4.so'
-        pickFirst 'jniLibs/x86/libopencv_java4.so'
         pickFirst 'jniLibs/armabi-v7a/libffmpeg.so'
         pickFirst 'jniLibs/x86/libffmpeg.so'
     }
 
-    packagingOptions {
-        pickFirst 'jniLibs/armeabi-v7a/fdk-aac.so'
-        pickFirst 'jniLibs/x86/fdk-aac.so'
-        pickFirst 'jniLibs/armeabi-v7a/libavutil.so'
-        pickFirst 'jniLibs/x86/libavutil.so'
-        pickFirst 'jniLibs/armeabi-v7a/libswscale.so'
-        pickFirst 'jniLibs/x86/libswscale.so'
-        pickFirst 'jniLibs/armeabi-v7a/libswresample.so'
-        pickFirst 'jniLibs/x86/libswresample.so'
-        pickFirst 'jniLibs/armeabi-v7a/libx264.so'
-        pickFirst 'jniLibs/x86/libx264.so'
-        pickFirst 'jniLibs/armeabi-v7a/libavcodec.so'
-        pickFirst 'jniLibs/x86/libavcodec.so'
-        pickFirst 'jniLibs/armeabi-v7a/libavformat.so'
-        pickFirst 'jniLibs/x86/libavformat.so'
-        pickFirst 'jniLibs/armeabi-v7a/libavfilter.so'
-        pickFirst 'jniLibs/x86/libavfilter.so'
-    }
+
 
 
     defaultConfig {
@@ -88,7 +69,6 @@ dependencies {
 
 
 
-    implementation files('libs/opencv-4.5.3.0.aar')
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.volley:volley:1.2.0'
 
@@ -115,20 +95,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
 
-
-    implementation project(path: ':zchan_view')
     implementation project(path: ':playerCore')
 
-//    implementation project(path: ':zchan_player')
-//    implementation project(path: ':zchan_ffrtmp')
-//    implementation project(path: ':zchan_opengl')
-//    implementation project(path: ':zchan_player_plus')
-//    implementation project(path: ':zchan_librtmp')
-//    implementation project(path: ':zchan_ffrtmp_plus')
-//    implementation project(path: ':zchan_hardrtmp')
-//    implementation project(path: ':zchan_player_annotating')
-//    implementation project(path: ':zchan_player_handwrite')
-    implementation project(path: ':zchan_webview')
 
 
     implementation 'androidx.annotation:annotation:1.6.0'

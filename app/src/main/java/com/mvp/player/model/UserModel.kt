@@ -2,6 +2,7 @@ package com.mvp.player.model
 
 import android.util.Log
 import android.widget.Toast
+import com.mvp.player.App
 import com.mvp.player.network.RetrofitManager
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -11,9 +12,9 @@ Created by Mr.Chan
 Time 2024-08-02
 Blog https://www.cnblogs.com/Frank-dev-blog/
  */
-class UserModel: IUserModel {
+class UserModel : IUserModel {
     override fun login(username: String, password: String, callBack: (LoginResponse) -> Unit) {
-        RetrofitManager.getRetrofit().create(UserService::class.java)
+        RetrofitManager.getRetrofit(App.instance.getToken()).create(UserService::class.java)
             .loginUser(LoginRequest(username, password))
             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
             .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
@@ -44,7 +45,7 @@ class UserModel: IUserModel {
     ) {
 
         Log.d("UserModel", "register")
-        RetrofitManager.getRetrofit().create(UserService::class.java)
+        RetrofitManager.getRetrofit(App.instance.getToken()).create(UserService::class.java)
 
             .registerUser(RegisterRequest(username, email, password))
             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
@@ -70,9 +71,9 @@ class UserModel: IUserModel {
             })
     }
 
-    override fun getUserInfo(token: String, callBack: (GetUserInfoResponse) -> Unit) {
-        RetrofitManager.getRetrofit().create(UserService::class.java)
-            .getUserInfo(GetUserInfoRequest(token))
+    override fun getUserInfo(callBack: (GetUserInfoResponse) -> Unit) {
+        RetrofitManager.getRetrofit(App.instance.getToken()).create(UserService::class.java)
+            .getUserInfo()
             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
             .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
             .subscribe(object : Observer<GetUserInfoResponse> {
@@ -84,7 +85,13 @@ class UserModel: IUserModel {
                 }
 
                 override fun onError(e: Throwable) {
-                    callBack(GetUserInfoResponse(false, e.message ?: "error", UserInfo("", "", "", "", "")))
+                    callBack(
+                        GetUserInfoResponse(
+                            false,
+                            e.message ?: "error",
+                            UserInfo("", "", "", "", "")
+                        )
+                    )
                 }
 
                 override fun onComplete() {

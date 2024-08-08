@@ -44,6 +44,9 @@ class LoginActivity : XBaseActivity(), IUserView {
 
         }
 
+        Toast.makeText(this, "登录失败 ${result.message}", Toast.LENGTH_SHORT).show()
+
+
     }
 
     override fun showLoading() {

@@ -57,7 +57,7 @@ public:
                 heightDisplay = h;
                 widthDisplay = h * r;
             }
-            glClearColor(.2, .2, .2, 1.0);
+//            glClearColor(.2, .2, .2, 1.0);
             glClear(GL_COLOR_BUFFER_BIT);
             glViewport((w - widthDisplay) / 2, (h - heightDisplay) / 2, widthDisplay, heightDisplay);
 

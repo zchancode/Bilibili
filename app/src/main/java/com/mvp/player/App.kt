@@ -10,19 +10,18 @@ Blog https://www.cnblogs.com/Frank-dev-blog/
  */
 class App : Application() {
 
-    var token: String? = null
-
     companion object {
         lateinit var instance: App
     }
 
+    fun getToken(): String {
+        val sharePreference = getSharedPreferences("user", MODE_PRIVATE)
+        return sharePreference.getString("token", "").toString()
+    }
+
+
     override fun onCreate() {
         super.onCreate()
         instance = this
-
-        val sharePreference = getSharedPreferences("user", MODE_PRIVATE)
-        token = sharePreference.getString("token", null)
-
-        Log.d("App", "token $token")
     }
 }

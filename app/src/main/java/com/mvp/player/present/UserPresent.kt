@@ -33,11 +33,12 @@ class UserPresent: IUserPresent {
             view.onResult(it)
             view.hideLoading()
         }
+
     }
 
-    override fun getUserInfo(token: String) {
+    override fun getUserInfo() {
         view.showLoading()
-        model.getUserInfo(token) {
+        model.getUserInfo {
             view.onResult(it)
             view.hideLoading()
         }

@@ -13,6 +13,7 @@
 #include "decode/AudioDecodeC.cxx"
 #include "resample/AudioResampleC.cxx"
 #include "audio/AudioPlayerC.cxx"
+#include "LogC.cxx"
 
 class IPlayerC {
 private:
@@ -24,14 +25,20 @@ private:
     AudioPlayerC *audioPlayer;
     VideoDecodeC *videoDecode;
     VideoPlayerC *videoPlayer;
+    LogC *mlog = nullptr;
+
 public:
-    IPlayerC(std::string url, ANativeWindow *win) {
+    IPlayerC(std::string url, ANativeWindow *win, LogC *mlog) {
         this->url = url;
         this->win = win;
+        this->mlog = mlog;
+
+
     }
 
     void startPlay() {
-        demux = new DemuxC(url.c_str());
+        demux = new DemuxC(url.c_str(), mlog, nullptr);
+
         audioDecode = new AudioDecodeC(demux->getAvFormatContext());
         audioResample = new AudioResampleC(audioDecode->getAVCodecContext());
         audioPlayer = new AudioPlayerC();
@@ -39,7 +46,7 @@ public:
         audioDecode->addObserver(audioResample);
         audioResample->addObserver(audioPlayer);
 
-        videoDecode = new VideoDecodeC(demux->getAvFormatContext(), audioPlayer);
+        videoDecode = new VideoDecodeC(demux->getAvFormatContext(), audioPlayer, mlog);
         videoPlayer = new VideoPlayerC(win);
         demux->addObserver(videoDecode);
         videoDecode->addObserver(videoPlayer);
@@ -51,12 +58,16 @@ public:
     }
 
     void stopPlay() {
-
         delete demux;
         delete videoDecode;
         delete audioDecode;
         delete audioResample;
         delete audioPlayer;
         delete videoPlayer;
+    }
+
+
+    void seekTo(int64_t pos) {
+        demux->seekTo(pos);
     }
 };

@@ -2,12 +2,15 @@
 // Created by Administrator on 2024-07-29.
 //
 #pragma once
+
 #include "../IObserverC.cxx"
 #include "android/log.h"
 #include <queue>
 
 #include <thread>
 #include "../audio/AudioPlayerC.cxx"
+#include "../LogC.cxx"
+
 extern "C" {
 #include "libavformat/avformat.h"
 #include "libavutil/time.h"
@@ -16,7 +19,7 @@ extern "C" {
 #define LOGE(FORMAT, ...) __android_log_print(ANDROID_LOG_ERROR,"zchan_structure",FORMAT,##__VA_ARGS__)
 
 
-class VideoDecodeC: public IObserverC {
+class VideoDecodeC : public IObserverC {
 private:
     int videoStreamIndex;
     AVCodecParameters *v_para;
@@ -28,14 +31,17 @@ private:
     std::queue<DataC> videoPackets;
     AudioPlayerC *audioPlayer = nullptr;
     int64_t vPts = 0;
+    LogC *mlog = nullptr;
 
     void threadMain() {
         while (isRunning) {
+            mlog->log("videoDecode: "+std::to_string(videoPackets.size()), mlog->getEnv());
+            mlog->releaseEnv();
+
             if (videoPackets.empty()) {
                 av_usleep(10);
                 continue;
             }
-
             //这里要注意lld不能是d 不然输出的数据会有问题
             if (audioPlayer->getAPts() < vPts && vPts > 0) {
                 av_usleep(1);
@@ -53,10 +59,10 @@ private:
             DataC videoFrame;
             videoFrame.data = frame;
             this->vPts = frame->pts;
-            LOGE("frame wxh is %d x %d", frame->width, frame->height);
             sendData(videoFrame);
             av_packet_free(&packet);
         }
+
         isExit = true;
     }
 
@@ -65,7 +71,6 @@ public:
         while (videoPackets.size() > 100) { //block the thread
             av_usleep(10);
         }
-
         AVPacket *packet = (AVPacket *) data.data;
         if (packet->stream_index == videoStreamIndex && packet->data != nullptr) {
             mutex.lock();
@@ -75,9 +80,11 @@ public:
 
     }
 
-    VideoDecodeC(AVFormatContext *avFormatContext, AudioPlayerC *audioPlayer) {
+    VideoDecodeC(AVFormatContext *avFormatContext, AudioPlayerC *audioPlayer, LogC *mlog) {
+        this->mlog = mlog;
         isRunning = true;
         isExit = false;
+
         this->frame = av_frame_alloc();
         this->audioPlayer = audioPlayer;
         videoStreamIndex = av_find_best_stream(avFormatContext, AVMEDIA_TYPE_VIDEO, -1, -1, 0, 0);
@@ -91,6 +98,7 @@ public:
 
     ~VideoDecodeC() {
         isRunning = false;
+
         while (!isExit) {
             av_usleep(10);
         }
@@ -103,7 +111,10 @@ public:
             videoPackets.pop();
             av_packet_free((AVPacket **) &data.data);
         }
+
+
     }
+
 
     void start() {
         std::thread t(&VideoDecodeC::threadMain, this);
