@@ -1,8 +1,11 @@
 package com.mvp.player.view
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsets
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bilibili.R
 import com.example.bilibili.databinding.XactivityPlayerMainBinding
@@ -33,10 +36,13 @@ class XMainActivity : XBaseActivity() {
             when (view.id) {
                 R.id.home -> {
                     viewPager2.currentItem = 0
+
+
                 }
 
                 R.id.search -> {
                     viewPager2.currentItem = 1
+
                 }
 
                 R.id.cameraxShow -> {

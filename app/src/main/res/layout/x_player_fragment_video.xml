@@ -185,5 +185,37 @@
 
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/demuxLog"
+        android:layout_margin="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/decodeLog"
+        android:layout_margin="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/demuxLog" />
+
+    <TextView
+        android:id="@+id/videoInfo"
+        android:layout_margin="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/decodeLog" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

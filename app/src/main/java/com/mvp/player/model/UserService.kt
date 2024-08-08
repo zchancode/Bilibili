@@ -36,10 +36,6 @@ data class LoginResponse(
 )
 
 
-data class GetUserInfoRequest(
-    val token: String
-)
-
 data class UserInfo(
     val id: String,
     val username: String,
@@ -64,5 +60,5 @@ interface UserService {
 
 
     @POST("/api/getUserInfo")
-    fun getUserInfo(@Body request: GetUserInfoRequest): Observable<GetUserInfoResponse>
+    fun getUserInfo(): Observable<GetUserInfoResponse>
 }

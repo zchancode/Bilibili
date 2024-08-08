@@ -1,8 +1,10 @@
 package com.mvp.player.view.base
 
+import android.graphics.Color
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+
 
 /**
 Created by Mr.Chan
@@ -33,5 +35,6 @@ abstract class XBaseActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCustomDensity()
+
     }
 }

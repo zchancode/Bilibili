@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.bilibili.R;
-import com.example.common.autoservice.IWebViewService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,15 +85,7 @@ public class ContainerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.container_activity_main);
-        ServiceLoader<IWebViewService> serviceLoader = ServiceLoader.load(IWebViewService.class);
-        if (serviceLoader.iterator().hasNext()) {
-            for (IWebViewService service : serviceLoader) {
-                Log.d(TAG, "Service found: " + service.getClass().getName());
-                service.loadLocalPage(this, "file:///android_asset/demo.html", "title", true);
-            }
-        } else {
-            Log.e(TAG, "No implementations for IWebViewService found");
-        }
+
 
     }
 }

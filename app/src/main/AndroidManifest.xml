@@ -28,9 +28,9 @@
         <activity
             android:name="com.mvp.player.view.FindActivity"
             android:exported="false" />
-        <activity
-            android:name="com.mvp.player.view.LoginActivity"
-            android:exported="false" />
+
+
+        <activity android:name="com.mvp.player.view.LoginActivity"/>
         <activity
             android:name="com.mvp.player.view.XMainActivity"
             android:exported="true">
