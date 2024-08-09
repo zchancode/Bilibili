@@ -1,9 +1,11 @@
 package com.mvp.player.view.base
 
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 
 /**
@@ -31,10 +33,10 @@ abstract class XBaseActivity: AppCompatActivity() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCustomDensity()
+
 
     }
 }

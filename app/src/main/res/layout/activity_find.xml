@@ -17,7 +17,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/findBack"
             android:layout_width="10dp"
             android:layout_height="18dp"
             android:layout_marginLeft="18dp"
@@ -40,6 +40,7 @@
 
 
         <ImageView
+            android:id="@+id/scanBtn"
             android:layout_marginRight="19dp"
             android:layout_marginBottom="13dp"
             android:layout_width="18dp"

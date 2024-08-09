@@ -26,7 +26,7 @@ let videos = [
     "userId": "uid", // 上传视频的用户ID
     "title": "title", // 视频标题
     "description": "des", // 视频描述
-    "url": "http://192.168.3.16:3000/test.mp4", // 视频地址
+    "url": "http://192.168.0.198:3000/test.mp4", // 视频地址
     "createdAt": "10001010102201" // 视频上传时间
   },
   {
@@ -34,7 +34,7 @@ let videos = [
     "userId": "uid2",
     "title": "title2",
     "description": "des2",
-    "url": "http://192.168.3.16:3000/test2.mp4",
+    "url": "http://192.168.0.198:3000/test2.mp4",
     "createdAt": "10001010102201",
   },
   {
@@ -42,7 +42,7 @@ let videos = [
     "userId": "uid2",
     "title": "title2",
     "description": "des2",
-    "url": "http://192.168.3.16:3000/test3.mp4",
+    "url": "http://192.168.0.198:3000/test3.mp4",
     "createdAt": "10001010102201",
   }
 ];
