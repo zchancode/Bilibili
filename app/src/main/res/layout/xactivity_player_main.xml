@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="47.67dp"
+        android:layout_height="82dp"
         android:background="#262626"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

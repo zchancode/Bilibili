@@ -22,15 +22,15 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-        <activity android:name="com.mvp.player.view.ProfileActivity"/>
-        <activity android:name="com.mvp.player.view.CameraXActivity"/>
+        <activity
+            android:name="com.mvp.player.view.ScanActivity"
+            android:exported="false" />
+        <activity android:name="com.mvp.player.view.ProfileActivity" />
+        <activity android:name="com.mvp.player.view.CameraXActivity" />
         <activity
             android:name="com.mvp.player.view.FindActivity"
             android:exported="false" />
-
-
-        <activity android:name="com.mvp.player.view.LoginActivity"/>
+        <activity android:name="com.mvp.player.view.LoginActivity" />
         <activity
             android:name="com.mvp.player.view.XMainActivity"
             android:exported="true">

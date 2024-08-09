@@ -1,6 +1,7 @@
 package com.mvp.player.view
 
 import android.app.ActionBar.LayoutParams
+import android.content.Intent
 import android.graphics.Color
 import android.view.KeyEvent
 import android.view.View
@@ -27,6 +28,7 @@ Time 2024-07-27
 Blog https://www.cnblogs.com/Frank-dev-blog/
  */
 class XSearchFragment : XBaseFragment(), IVideoView {
+    private lateinit var searchResultView: RecyclerView
     override fun getLayoutId(): Int {
         return R.layout.x_player_fragment_search
     }
@@ -40,19 +42,23 @@ class XSearchFragment : XBaseFragment(), IVideoView {
         trendList.add(SearchTrending("test", 100, "test"))
         trendList.add(SearchTrending("test", 100, "test"))
         trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
+        trendList.add(SearchTrending("test", 100, "test"))
 
 
         recyclerView.adapter = SearchTrendAdapter(requireContext(), trendList)
 
 
         val searchResultLayout = view.findViewById<View>(R.id.searchResultLayout)
-        val searchResultView = view.findViewById<RecyclerView>(R.id.recycler_view_search)
+        searchResultView = view.findViewById<RecyclerView>(R.id.recycler_view_search)
         searchResultView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(requireContext(),2)
-        val searchResultList = arrayListOf<String>()
-        searchResultList.add("test")
-        searchResultList.add("test")
-        searchResultList.add("test")
-        searchResultView.adapter = SearchResultAdapter(searchResultList)
+
 
 
         val scanBtn = view.findViewById<TextView>(R.id.scanBtn)
@@ -62,6 +68,9 @@ class XSearchFragment : XBaseFragment(), IVideoView {
         val videoPresent = VideoPresent(this)
 
         val searchBox = view.findViewById<EditText>(R.id.searchBox)
+        scanBtn.setOnClickListener{
+            startActivity(Intent(requireContext(), ScanActivity::class.java))
+        }
         searchBox.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                 (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
@@ -70,10 +79,14 @@ class XSearchFragment : XBaseFragment(), IVideoView {
                 videoPresent.searchVideo(query)
                 searchResultLayout.visibility = View.VISIBLE
                 scanBtn.background = resources.getDrawable(R.drawable.baseline_clear_24)
+
                 scanBtn.setOnClickListener{
                     searchResultLayout.visibility = View.GONE
                     scanBtn.text = ""
                     scanBtn.background = resources.getDrawable(R.drawable.search_ico)
+                    scanBtn.setOnClickListener{
+                        startActivity(Intent(requireContext(), ScanActivity::class.java))
+                    }
                 }
 
                 true
@@ -96,7 +109,9 @@ class XSearchFragment : XBaseFragment(), IVideoView {
 
     override fun onResult(result: Any) {
         val result = result as SearchResponse
-        Toast.makeText(requireContext(), result.data.size.toString(), Toast.LENGTH_SHORT).show()
+        val searchResultList = arrayListOf<Video>()
+        searchResultList.addAll(result.data)
+        searchResultView.adapter = SearchResultAdapter(searchResultList)
     }
 
     override fun onShowLoading() {
