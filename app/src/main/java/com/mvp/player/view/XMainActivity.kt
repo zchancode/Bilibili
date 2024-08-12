@@ -36,8 +36,6 @@ class XMainActivity : XBaseActivity() {
             when (view.id) {
                 R.id.home -> {
                     viewPager2.currentItem = 0
-
-
                 }
 
                 R.id.search -> {
