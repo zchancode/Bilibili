@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitManager {
 
-    const val baseUrl = "http://192.168.0.198:3000"
+    const val baseUrl = "http://192.168.0.100:3000"
 
     fun getRetrofit(token: String): Retrofit {
         return Retrofit.Builder()

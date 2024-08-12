@@ -58,7 +58,6 @@ interface UserService {
     @POST("/api/login")
     fun loginUser(@Body request: LoginRequest): Observable<LoginResponse>
 
-
     @POST("/api/getUserInfo")
     fun getUserInfo(): Observable<GetUserInfoResponse>
 }
